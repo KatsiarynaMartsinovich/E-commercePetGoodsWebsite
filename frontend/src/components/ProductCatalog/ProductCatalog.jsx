@@ -1,6 +1,6 @@
 import FilterSidebar from "./FilterSidebar";
-// import ProductToolbar from "./ProductToolbar";
-// import ProductGrid from "./ProductGrid";
+import ProductToolbar from "./ProductToolbar";
+import ProductGrid from "./ProductGrid";
 
 const ProductCatalog = () => {
   return (
@@ -9,10 +9,8 @@ const ProductCatalog = () => {
         <FilterSidebar />
 
         <div className="catalog-main">
-          {/* <ProductToolbar /> */}
-          {/* <ProductGrid /> */}
-          <div>Products here...</div>
-    
+          <ProductToolbar />
+          <ProductGrid />
         </div>
       </div>
     </div>

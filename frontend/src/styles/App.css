@@ -391,3 +391,137 @@ body {
 .catalog-main {
   flex: 1;
 }
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  border: 1px solid #E5E7EB;
+  padding: 0px 16px;
+  border-radius: 10px;
+  margin-bottom: 24px;
+  height: 70px;
+}
+
+.toolbar-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.filter-btn {
+  display: none;
+  background: #f3f4f6;
+  padding: 8px 16px;
+  border-radius: 10px;
+}
+
+.product-count {
+  color: #4A5565;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.toolbar-right-label {
+  color: #364153;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.sort-btn {
+  background: #F3F3F5;
+  padding: 8px 12px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  width: 180px;
+  border: none;
+  outline: none; 
+}
+
+.toolbar-right-span {
+  color: #0A0A0A;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.toolbar-right-icon {
+  width: 16px;
+}
+
+.product-grid {
+  display: grid;
+  gap: 24px;
+}
+
+@media (min-width: 768px) {
+  .product-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.product-card {
+  display: block;
+  background: white;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid #E5E7EB;
+  text-decoration: none;
+}
+
+.product-image-wrapper {
+  position: relative;
+  aspect-ratio: 4/5;
+  overflow: hidden;
+}
+
+.product-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.price-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: #FF6900;
+  color: white;
+  padding: 7.5px 10px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.rating span {
+  font-size: 12px;
+  color: #6A7282;
+}
+
+.star {
+  width: 14px;
+  height: 14px;
+}
+
+.product-bottom {
+  padding: 16px;
+}
+
+.card-title{
+  font-size: 14px;
+  font-weight: 500;
+  color: #101828;
+}
