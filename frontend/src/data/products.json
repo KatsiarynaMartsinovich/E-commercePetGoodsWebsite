@@ -1,0 +1,92 @@
+[
+  {
+    "name": "Airline-Approved Pet Travel Carrier",
+    "category": "Travel & Carriers",
+    "rating": 4,
+    "image": "https://images.unsplash.com/photo-1764813824215-4afa03d1a011?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwZXQlMjBjYXJyaWVyJTIwdHJhdmVsfGVufDF8fHx8MTc3MTE4NjI3M3ww&ixlib=rb-4.1.0&q=80&w=1080",
+    "price": 54.99,
+    "description": "Soft-sided pet carrier approved for airline cabin use. Features mesh panels for ventilation, padded shoulder strap, and collapsible design for easy storage. Interior fleece pad provides comfort. Meets TSA requirements for in-cabin pet travel.",
+    "specifications": {
+      "Dimensions": "18 x 11 x 11 inches",
+      "Material": "Polyester with Mesh Panels",
+      "Weight Limit": "Up to 15 lbs",
+      "Airline Approved": "Yes (TSA Compliant)",
+      "Features": "Collapsible, Padded Strap"
+    }
+  },
+  {
+    "name": "Interactive Rubber Chew Ball",
+    "category": "Toys & Scratchers",
+    "rating": 5,
+    "image": "https://images.unsplash.com/photo-1758543535539-325abf59ef48?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwZXQlMjB0b3klMjBiYWxsfGVufDF8fHx8MTc3MTA5MjU4MHww&ixlib=rb-4.1.0&q=80&w=1080",
+    "price": 15.99,
+    "description": "Durable rubber chew ball designed for aggressive chewers. Features textured surface for dental health and can be filled with treats for extended playtime. Bounces unpredictably for exciting fetch games. Non-toxic, BPA-free rubber material.",
+    "specifications": {
+      "Diameter": "3.5 inches",
+      "Material": "Natural Rubber",
+      "Treat Compartment": "Yes",
+      "Safety": "BPA-Free, Non-Toxic",
+      "Suitable For": "All Dog Sizes"
+    }
+  },
+  {
+    "name": "Multi-Level Cat Scratching Post",
+    "category": "Toys & Scratchers",
+    "rating": 4.5,
+    "image": "https://images.unsplash.com/photo-1545249390-6bdfa286032f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjYXQlMjBzY3JhdGNoaW5nJTIwcG9zdHxlbnwxfHx8fDE3NzEwODY2ODR8MA&ixlib=rb-4.1.0&q=80&w=1080",
+    "price": 89.99,
+    "description": "Three-tier cat scratching post with sisal rope wrapping and plush platforms. Provides multiple levels for climbing, scratching, and resting. Sturdy base ensures stability during active play. Natural jute fibers satisfy your cat's scratching instincts.",
+    "specifications": {
+      "Height": "38 inches",
+      "Base Dimensions": "20 x 20 inches",
+      "Material": "Sisal Rope & Plush Fabric",
+      "Platforms": "3 Levels",
+      "Weight Capacity": "Up to 25 lbs per platform"
+    }
+  },
+  {
+    "name": "Orthopedic Memory Foam Pet Bed",
+    "category": "Beds & Furniture",
+    "rating": 3.5,
+    "image": "https://images.unsplash.com/photo-1713106872096-cee971f0528e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwZXQlMjBiZWQlMjBjdXNoaW9ufGVufDF8fHx8MTc3MTE4NjI3Mnww&ixlib=rb-4.1.0&q=80&w=1080",
+    "price": 69.99,
+    "description": "Luxurious memory foam pet bed with removable, machine-washable cover. Provides superior support for senior pets and those with joint issues. Water-resistant liner protects the foam core. Available in multiple sizes to fit all breeds.",
+    "specifications": {
+      "Size": "Large (40 x 28 inches)",
+      "Foam Thickness": "4 inches",
+      "Cover Material": "Microfiber",
+      "Washing": "Machine Washable Cover",
+      "Weight": "8 lbs"
+    }
+  },
+  {
+    "name": "Premium Stainless Steel Dog Bowl",
+    "category": "Bowls & Feeders",
+    "rating": 5,
+    "image": "https://images.unsplash.com/photo-1598134493179-51332e56807f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkb2clMjBmb29kJTIwYm93bHxlbnwxfHx8fDE3NzEwODY2ODJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+    "price": 24.99,
+    "description": "Durable stainless steel dog bowl designed for medium to large breeds. Non-slip rubber base prevents sliding and spillage. Dishwasher safe and rust-resistant for long-lasting use. Perfect for both food and water.",
+    "specifications": {
+      "Material": "Stainless Steel",
+      "Capacity": "64 oz (1.9 L)",
+      "Diameter": "8.5 inches",
+      "Care": "Dishwasher Safe",
+      "Weight": "1.2 lbs"
+    }
+  },
+  {
+    "name": "Reflective Nylon Dog Leash & Collar Set",
+    "category": "Leashes & Collars",
+    "rating": 4,
+    "image": "https://images.unsplash.com/photo-1577447278822-37801be21738?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkb2clMjBsZWFzaCUyMGNvbGxhcnxlbnwxfHx8fDE3NzExODYyNzN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+    "price": 32.99,
+    "description": "High-visibility reflective dog leash and collar set perfect for evening walks. Durable nylon construction with reinforced stitching. Quick-release buckle and adjustable sizing for a perfect fit. Includes sturdy metal D-ring for tag attachment.",
+    "specifications": {
+      "Leash Length": "6 feet",
+      "Material": "Nylon with Reflective Stitching",
+      "Collar Size": "Adjustable 14-20 inches",
+      "Hardware": "Metal D-ring & Clasp",
+      "Suitable For": "Medium to Large Dogs"
+    }
+  }
+]
