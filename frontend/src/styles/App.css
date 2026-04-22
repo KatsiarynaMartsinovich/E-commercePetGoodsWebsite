@@ -102,3 +102,32 @@ body {
     display: none;
   }
 }
+
+/* Hero */
+.hero {
+  background: linear-gradient(90deg, #FF6900 0%, #F6339A 100%);
+  color: white;
+  padding: 48px 0;
+}
+
+.hero-title {
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+
+.hero-subtitle {
+  font-size: 18px;
+  color: #fff7ed;
+}
+
+@media (min-width: 768px) {
+  .hero {
+    padding: 64px 0;
+  }
+
+  .hero-title {
+    font-size: 40px;
+  }
+}
