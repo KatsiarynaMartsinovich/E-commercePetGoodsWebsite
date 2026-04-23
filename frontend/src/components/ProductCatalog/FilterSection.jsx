@@ -1,34 +1,39 @@
-import { useState } from "react";
-
 const FilterSection = ({
   title,
   mode,
   options = [],
-  minValue: initialMinValue = "0",
-  maxValue: initialMaxValue = "100",
+  filters,
+  setFilters,
+  minValue = "0",
+  maxValue = "100",
   currencySymbol = "$",
 }) => {
-  const [selectedRatings, setSelectedRatings] = useState([]);
-  
-  const [minPrice, setMinPrice] = useState(initialMinValue);
-  const [maxPrice, setMaxPrice] = useState(initialMaxValue);
 
   const handleRatingToggle = (label) => {
-    setSelectedRatings((prev) =>
-      prev.includes(label)
-        ? prev.filter((item) => item !== label)
-        : [...prev, label]
-    );
+    setFilters((prev) => {
+      const exists = prev.ratings.includes(label);
+
+      return {
+        ...prev,
+        ratings: exists
+          ? prev.ratings.filter((r) => r !== label)
+          : [...prev.ratings, label],
+      };
+    });
   };
 
   const handleMinPriceChange = (e) => {
-    const value = e.target.value;
-    setMinPrice(value);
+    setFilters((prev) => ({
+      ...prev,
+      minPrice: Number(e.target.value),
+    }));
   };
 
   const handleMaxPriceChange = (e) => {
-    const value = e.target.value;
-    setMaxPrice(value);
+    setFilters((prev) => ({
+      ...prev,
+      maxPrice: Number(e.target.value),
+    }));
   };
 
   return (
@@ -37,42 +42,48 @@ const FilterSection = ({
 
       {mode === "rating" ? (
         <div>
-          {options.map((option, index) => (
-            <div
-              key={index}
-              className={`filter-option ${
-                index !== options.length - 1 ? "mb-3" : ""
-              }`}
-              onClick={() => handleRatingToggle(option.label)}
-              style={{ cursor: "pointer" }}
-            >
-              <div
-                className={`filter-checkbox ${
-                  selectedRatings.includes(option.label) ? "checked" : ""
-                }`}
-              >
-                {selectedRatings.includes(option.label) && (
-                  <svg
-                    width="12"
-                    height="12"
-                    viewBox="0 0 12 12"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M11 2L4.5 9.5L1 5.5"
-                      stroke="white"
-                      strokeWidth="1"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                )}
-              </div>
+          {options.map((option, index) => {
+            const checked = filters.ratings.includes(option.label);
 
-              <label className="filter-label">{option.label}</label>
-            </div>
-          ))}
+            return (
+              <div
+                key={index}
+                className={`filter-option ${
+                  index !== options.length - 1 ? "mb-3" : ""
+                }`}
+                onClick={() => handleRatingToggle(option.label)}
+                style={{ cursor: "pointer" }}
+              >
+                <div
+                  className={`filter-checkbox ${
+                    checked ? "checked" : ""
+                  }`}
+                >
+                  {checked && (
+                    <svg
+                      width="12"
+                      height="12"
+                      viewBox="0 0 12 12"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M11 2L4.5 9.5L1 5.5"
+                        stroke="white"
+                        strokeWidth="1"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  )}
+                </div>
+
+                <label className="filter-label">
+                  {option.label}
+                </label>
+              </div>
+            );
+          })}
         </div>
       ) : (
         <div className="price-wrapper">
@@ -82,7 +93,7 @@ const FilterSection = ({
               <span className="currency">{currencySymbol}</span>
               <input
                 type="number"
-                value={minPrice}
+                value={filters.minPrice}
                 onChange={handleMinPriceChange}
                 className="price-input"
               />
@@ -97,7 +108,7 @@ const FilterSection = ({
               <span className="currency">{currencySymbol}</span>
               <input
                 type="number"
-                value={maxPrice}
+                value={filters.maxPrice}
                 onChange={handleMaxPriceChange}
                 className="price-input"
               />

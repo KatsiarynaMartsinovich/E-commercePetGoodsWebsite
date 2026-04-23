@@ -1,8 +1,7 @@
-import products from "../../data/products.json";
 import { SortDropdown } from "./SortDropdown";
 import filter from '../../assets/filter.svg';
 
-const ProductToolbar = () => {
+const ProductToolbar = ({ total, sortOption, setSortOption }) => {
   return (
     <div className="toolbar">
       <div className="toolbar-left">
@@ -12,11 +11,14 @@ const ProductToolbar = () => {
         </button>
 
         <p className="product-count">
-          {products.length} products
+          {total} products
         </p>
       </div>
 
-      <SortDropdown />
+      <SortDropdown
+        selected={sortOption}
+        onChange={setSortOption}
+      />
     </div>
   );
 };

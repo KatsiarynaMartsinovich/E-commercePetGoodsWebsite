@@ -8,13 +8,12 @@ const options = [
   "Price (High to Low)",
 ];
 
-export const SortDropdown = () => {
-  const [selected, setSelected] = useState("Name (A-Z)");
+export const SortDropdown = ({ selected, onChange }) => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
 
   const handleSelect = (option) => {
-    setSelected(option);
+    onChange(option);
     setIsOpen(false);
   };
 
@@ -55,6 +54,7 @@ export const SortDropdown = () => {
                 onClick={() => handleSelect(option)}
               >
                 <span>{option}</span>
+
                 {selected === option && (
                   <svg
                     width="12"

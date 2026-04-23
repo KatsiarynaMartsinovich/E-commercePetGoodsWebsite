@@ -1,16 +1,20 @@
-import products from "../../data/products.json";
 import ProductCard from "./ProductCard";
 
-const ProductGrid = () => {
+const ProductGrid = ({ products }) => {
   return (
     <div className="product-grid">
-      {products.map((product, index) => (
-        <ProductCard
-          key={index}
-          product={product}
-          id={index + 1}
-        />
-      ))}
+      {products.length === 0 ? (
+        <div className="no-products">
+          No products match your filters.
+        </div>
+      ) : (
+        products.map((product, index) => (
+          <ProductCard
+            key={index}
+            product={product}
+          />
+        ))
+      )}
     </div>
   );
 };

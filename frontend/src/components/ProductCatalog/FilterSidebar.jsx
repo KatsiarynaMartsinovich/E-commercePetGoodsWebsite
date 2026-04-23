@@ -1,6 +1,6 @@
 import FilterSection from "./FilterSection";
 
-const FilterSidebar = () => {
+const FilterSidebar = ({ filters, setFilters }) => {
   return (
     <aside className="filter-sidebar">
       <div className="filter-box">
@@ -14,13 +14,15 @@ const FilterSidebar = () => {
             { label: "4+ Stars" },
             { label: "3+ Stars" },
           ]}
+          filters={filters}
+          setFilters={setFilters}
         />
 
         <FilterSection
           title="Price Range"
           mode="price"
-          minValue="0"
-          maxValue="100"
+          filters={filters}
+          setFilters={setFilters}
         />
       </div>
     </aside>
