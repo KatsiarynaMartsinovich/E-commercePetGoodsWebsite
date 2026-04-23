@@ -1,6 +1,6 @@
 import products from "../../data/products.json";
+import { SortDropdown } from "./SortDropdown";
 import filter from '../../assets/filter.svg';
-import expand from '../../assets/expand.svg';
 
 const ProductToolbar = () => {
   return (
@@ -16,14 +16,7 @@ const ProductToolbar = () => {
         </p>
       </div>
 
-      <div className="toolbar-right">
-        <label className="toolbar-right-label">Sort by:</label>
-
-        <button className="sort-btn">
-          <span className="toolbar-right-span">Name (A-Z)</span>
-          <img className="toolbar-right-icon" src={expand} alt="" />
-        </button>
-      </div>
+      <SortDropdown />
     </div>
   );
 };
