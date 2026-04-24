@@ -1,10 +1,25 @@
 import FilterSection from "./FilterSection";
+import closeIcon from "../../assets/close.svg";
 
-const FilterSidebar = ({ filters, setFilters }) => {
+const FilterSidebar = ({
+  filters,
+  setFilters,
+  isOpen,
+  onClose,
+}) => {
   return (
-    <aside className="filter-sidebar">
+    <aside
+      className={`filter-sidebar ${isOpen ? "open" : ""}`}
+    >
       <div className="filter-box">
-        <h2 className="filter-title">Filters</h2>
+        
+        <div className="filter-header">
+          <h2 className="filter-title">Filters</h2>
+
+          <button className="filter-close-btn" onClick={onClose}>
+            <img src={closeIcon} alt="Close" />
+          </button>
+        </div>
 
         <FilterSection
           title="Rating"

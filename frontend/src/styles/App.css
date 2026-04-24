@@ -98,6 +98,10 @@ body {
   display: none;
 }
 
+.mobile-menu {
+  display: none;
+}
+
 @media (max-width: 768px) {
   .nav {
     display: none;
@@ -110,6 +114,22 @@ body {
   .brand-text {
     display: none;
   }
+
+  .mobile-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 16px 0;
+    border-top: 1px solid #eee;
+  }
+
+  .mobile-menu a {
+    text-decoration: none;
+    font-size: 14px;
+    color: #364153;
+    padding: 8px 0;
+  }
+
 }
 
 .hero {
@@ -262,6 +282,8 @@ body {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  align-items: center;
+  text-align: center;
 }
 
 .footer-bottom p {
@@ -314,7 +336,62 @@ body {
   display: none;
 }
 
+.desktop-sidebar {
+  display: none;
+}
+
+
+
+
+
+.filter-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.filter-close-btn {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.filter-close-btn img {
+  width: 40px;
+}
+
+@media (max-width: 767px) {
+  .filter-sidebar.open {
+    display: block;
+    width: 100%;
+    margin-bottom: 16px;
+  }
+
+  .mobile-filters {
+    width: 100%;
+    margin-bottom: 16px;
+  }
+
+  .mobile-filters .filter-sidebar {
+    display: block;
+    width: 100%;
+  }
+
+  .filter-close-btn {
+    display: block;
+  }
+}
+
 @media (min-width: 768px) {
+  .desktop-sidebar {
+    display: block;
+  }
+
+  .mobile-filters {
+    display: none;
+  }
+
   .filter-sidebar {
     display: block;
   }
@@ -463,9 +540,19 @@ body {
 
 .filter-btn {
   display: none;
-  background: #f3f4f6;
+  background: #F3F3F5;
   padding: 8px 16px;
-  border-radius: 10px;
+  border-radius: 8px;
+  border: none;
+}
+
+.filter-btn img{
+  width: 16px;
+}
+
+.filter-btn span{
+  font-size: 14px;
+  font-weight: 600;
 }
 
 .product-count {
@@ -515,7 +602,7 @@ body {
   position: absolute;
   top: 110%;
   left: 0;
-  width: 180px;
+  width: 100%;
   background: white;
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
@@ -554,6 +641,39 @@ body {
 @media (min-width: 768px) {
   .product-grid {
     grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .toolbar {
+    flex-wrap: wrap;
+    height: auto;
+    padding: 10px 12px;
+  }
+
+  .toolbar-left {
+    width: 100%;
+    justify-content: flex-start;
+    gap: 10px;
+  }
+
+  .toolbar-right {
+    width: 100%;
+    margin-top: 8px;
+  }
+
+  .dropdown {
+    width: 100%;
+  }
+
+  .sort-btn {
+    width: 100%;
+  }
+
+  .filter-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
   }
 }
 
