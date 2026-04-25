@@ -2,6 +2,8 @@ import ProductGallery from "./ProductGallery";
 import ProductInfo from "./ProductInfo";
 import Rating from "./Rating";
 import QuantitySelector from "./QuantitySelector";
+import iconItem from "../../assets/info.svg";
+import iconHeader from "../../assets/specifications.svg";
 
 const ProductDetail = ({ product }) => {
   return (
@@ -22,7 +24,7 @@ const ProductDetail = ({ product }) => {
           sectionVariant="highlights"
           highlightsTitle="Key Highlights"
           highlights={Object.entries(product.specifications)
-            .slice(0, 3 )
+            .slice(0, 3)
             .map(([key, value]) => `• ${key}: ${value}`)}
         />
 
@@ -40,14 +42,27 @@ const ProductDetail = ({ product }) => {
 
         <ProductInfo sectionVariant="button" buttonText="Add to Cart" />
 
-        <div className="specs">
-          <h3>Technical Specifications</h3>
+        <div className="specs-modern">
+          <div className="specs-header">
+            <div className="specs-header-icon">
+              <img src={iconHeader} alt="Icon" />
+            </div>
+            <h3>Technical Specifications</h3>
+          </div>
 
-          <div className="specs-grid">
+          <div className="specs-grid-modern">
             {Object.entries(product.specifications).map(([key, value]) => (
-              <div key={key} className="spec-item">
-                <p className="spec-title">{key}</p>
-                <p className="spec-value">{value}</p>
+              <div key={key} className="spec-card">
+                <div className="spec-card-inner">
+                  <div className="spec-icon">
+                    <img src={iconItem} alt="Icon" />
+                  </div>
+
+                  <div className="spec-text">
+                    <p className="spec-title">{key}</p>
+                    <p className="spec-value">{value}</p>
+                  </div>
+                </div>
               </div>
             ))}
           </div>

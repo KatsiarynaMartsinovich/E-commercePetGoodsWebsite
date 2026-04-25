@@ -1121,7 +1121,7 @@ body {
   font-weight: 600;
   color: #101828;
   margin-bottom: 8px;
-  margin-top: 8px;
+  margin-top: 2px;
   line-height: 27px;
 }
 
@@ -1221,47 +1221,110 @@ body {
   display: block; 
 }
 
-/* ====== SPECS ====== */
-.specs {
-  background: linear-gradient(135deg, #fafafa, #f3f4f6);
-  border: 1px solid #e5e7eb;
-  padding: 20px;
+.specs-modern {
+  background: linear-gradient(to right bottom, #F9FAFB, #F3F4F6);
+  border: 1px solid #E5E7EB;
+  padding: 12px 24px;
   border-radius: 14px;
+  margin-top: 20px;
 }
 
-.specs h3 {
-  margin-bottom: 15px;
+.specs-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.specs-header-icon {
+  width: 20px;
+  height: 20px;
+  background: #FF6900;
+  padding: 8px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.specs-header-icon img {
+  width: 20px;
+  height: 20px;
+}
+
+.specs-header h3 {
   font-size: 18px;
-  font-weight: bold;
+  font-weight: 700;
+  color: #101828;
 }
 
-.specs-grid {
+.specs-grid-modern {
   display: grid;
   grid-template-columns: 1fr;
   gap: 12px;
 }
 
 @media (min-width: 768px) {
-  .specs-grid {
+  .specs-grid-modern {
     grid-template-columns: 1fr 1fr;
   }
 }
 
-.spec-item {
-  background: white;
-  border: 1px solid #e5e7eb;
-  padding: 15px;
+.spec-card {
+  background: #FFFFFF;
+  border: 1px solid #E5E7EB;
   border-radius: 10px;
+  padding: 16px;
+}
+
+.spec-card:hover {
+  border: 1px solid #ffb86a;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.spec-card-inner {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.spec-icon {
+  background: #FFF7ED;
+  padding: 8px;
+  border-radius: 10px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.spec-icon img {
+  width: 16px;
+  height: 16px;
+}
+
+.spec-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 4px;
 }
 
 .spec-title {
   font-size: 12px;
-  color: #6b7280;
   text-transform: uppercase;
-  margin-bottom: 5px;
+  color: #6b7280;
+  letter-spacing: 0.3px;
+  margin: 0;
+  margin-bottom: 4px;
 }
 
 .spec-value {
   font-size: 14px;
   font-weight: 600;
+  margin: 0;
+  color: #111827;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
