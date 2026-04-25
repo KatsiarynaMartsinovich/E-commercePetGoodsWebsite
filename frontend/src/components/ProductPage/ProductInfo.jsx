@@ -1,3 +1,5 @@
+import basketIcon from '../../assets/white_basket.svg';
+
 const ProductInfo = (props) => {
   if (props.sectionVariant === "description") {
     return (
@@ -11,7 +13,7 @@ const ProductInfo = (props) => {
   if (props.sectionVariant === "quantity") {
     return (
       <div className="quantity-row">
-        <span>{props.quantityLabel}</span>
+        <span className="quantity-title">{props.quantityLabel}</span>
         {props.quantitySelector}
       </div>
     );
@@ -20,7 +22,8 @@ const ProductInfo = (props) => {
   if (props.sectionVariant === "button") {
     return (
       <button className="add-to-cart">
-        {props.buttonText}
+        <img src={basketIcon} alt="Корзина" />
+        <span>{props.buttonText}</span>
       </button>
     );
   }

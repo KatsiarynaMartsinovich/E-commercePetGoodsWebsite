@@ -6,7 +6,7 @@ const QuantitySelector = () => {
   return (
     <div className="quantity">
       <button onClick={() => setCount(Math.max(1, count - 1))}>
-        -
+        –
       </button>
 
       <span>{count}</span>

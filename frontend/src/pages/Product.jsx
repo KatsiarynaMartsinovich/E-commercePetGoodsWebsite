@@ -21,7 +21,6 @@ const Product = () => {
 
       <div className="product-page">
         
-        {/* верхняя полоска с хлебными крошками */}
         <div className="breadcrumbs-bar">
           <div className="content-container">
             <Breadcrumbs product={product} />
