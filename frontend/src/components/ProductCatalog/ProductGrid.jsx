@@ -12,6 +12,7 @@ const ProductGrid = ({ products }) => {
           <ProductCard
             key={index}
             product={product}
+            id={index}
           />
         ))
       )}

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import star from '../../assets/star.svg';
 import half_star from '../../assets/half_star.svg';
 import empty_star from '../../assets/empty_star.svg';
@@ -10,15 +11,11 @@ const renderStars = (rating) => {
   const stars = [];
 
   for (let i = 0; i < fullStars; i++) {
-    stars.push(
-      <img key={"full-" + i} src={star} className="star" alt="" />
-    );
+    stars.push(<img key={"full-" + i} src={star} className="star" alt="" />);
   }
 
   if (hasHalf) {
-    stars.push(
-      <img key="half" src={half_star} className="star" alt="" />
-    );
+    stars.push(<img key="half" src={half_star} className="star" alt="" />);
   }
 
   while (stars.length < 5) {
@@ -32,7 +29,7 @@ const renderStars = (rating) => {
 
 const ProductCard = ({ product, id }) => {
   return (
-    <a href={`/product/${id}`} className="product-card">
+    <Link to={`/product/${id}`} className="product-card">
       <div className="product-image-wrapper">
         <img src={product.image} alt={product.name} />
 
@@ -46,9 +43,7 @@ const ProductCard = ({ product, id }) => {
             </div>
 
             <div className="overlay-bottom">
-              <p className="overlay-price">
-                ${product.price}
-              </p>
+              <p className="overlay-price">${product.price}</p>
 
               <button className="add-to-cart-btn">
                 <img src={cartIcon} alt="Add to cart" />
@@ -70,7 +65,7 @@ const ProductCard = ({ product, id }) => {
           <span>({product.rating})</span>
         </div>
       </div>
-    </a>
+    </Link>
   );
 };
 
