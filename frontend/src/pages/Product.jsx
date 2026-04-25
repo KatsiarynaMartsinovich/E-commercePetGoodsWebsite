@@ -4,7 +4,7 @@ import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 import Breadcrumbs from "../components/ProductPage/Breadcrumbs";
 import ProductDetail from "../components/ProductPage/ProductDetail";
-
+import RelatedProducts from "../components/ProductPage/RelatedProducts";
 
 const Product = () => {
   const { id } = useParams();
@@ -27,6 +27,11 @@ const Product = () => {
 
         <div className="content-container main-content">
           <ProductDetail product={product} />
+
+          <RelatedProducts
+            currentProduct={product}
+            products={products}
+          />
         </div>
       </div>
 
