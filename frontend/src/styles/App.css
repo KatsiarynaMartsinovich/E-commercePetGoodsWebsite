@@ -1108,6 +1108,40 @@ body {
   margin-left: 8px;
 }
 
+.highlights {
+  background: #FFF7ED;
+  border: 1px solid #FFEDD4;
+  padding: 16px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.highlights-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #101828;
+  margin-bottom: 8px;
+  margin-top: 8px;
+  line-height: 27px;
+}
+
+.highlights-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 14px;
+  color: #364153;
+  line-height: 20px;
+}
+
+.highlights-item {
+  margin-bottom: 4px;
+}
+
+.highlights-item:last-child {
+  margin-bottom: 0;
+}
+
 .section {
   margin-bottom: 20px;
 }

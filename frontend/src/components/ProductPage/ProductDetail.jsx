@@ -19,6 +19,14 @@ const ProductDetail = ({ product }) => {
         />
 
         <ProductInfo
+          sectionVariant="highlights"
+          highlightsTitle="Key Highlights"
+          highlights={Object.entries(product.specifications)
+            .slice(0, 3 )
+            .map(([key, value]) => `• ${key}: ${value}`)}
+        />
+
+        <ProductInfo
           sectionVariant="description"
           descriptionTitle="Description"
           description={product.description}
@@ -30,10 +38,7 @@ const ProductDetail = ({ product }) => {
           quantitySelector={<QuantitySelector />}
         />
 
-        <ProductInfo
-          sectionVariant="button"
-          buttonText="Add to Cart"
-        />
+        <ProductInfo sectionVariant="button" buttonText="Add to Cart" />
 
         <div className="specs">
           <h3>Technical Specifications</h3>

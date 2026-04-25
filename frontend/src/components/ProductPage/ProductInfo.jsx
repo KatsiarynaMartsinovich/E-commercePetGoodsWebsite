@@ -1,6 +1,22 @@
-import basketIcon from '../../assets/white_basket.svg';
+import basketIcon from "../../assets/white_basket.svg";
 
 const ProductInfo = (props) => {
+  if (props.sectionVariant === "highlights") {
+    return (
+      <div className="highlights">
+        <h3 className="highlights-title">{props.highlightsTitle}</h3>
+
+        <ul className="highlights-list">
+          {(props.highlights || []).map((item, index) => (
+            <li key={index} className="highlights-item">
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
+  }
+
   if (props.sectionVariant === "description") {
     return (
       <div className="section">
