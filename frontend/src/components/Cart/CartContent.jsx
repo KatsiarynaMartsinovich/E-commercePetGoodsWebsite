@@ -1,30 +1,23 @@
 import { useCart } from "../../context/CartContext";
-import CartItem from "./CartItem";
-import OrderSummary from "./OrderSummary";
 import CartHeader from "./CartHeader";
+import CartList from "./CartList";
+import OrderSummary from "./OrderSummary";
 
 const CartContent = () => {
   const { cart } = useCart();
 
-  const totalItems = cart.length;
-
   return (
     <div>
-        <CartHeader totalItems={totalItems} />
-        <div className="cart-page">
-            <div className="cart-full">
-
-              <div className="cart-layout">
-                <div className="cart-items">
-                  {cart.map((item) => (
-                    <CartItem key={item.id} item={item} />
-                  ))}
-                </div>
-
-                <OrderSummary />
-              </div>
-            </div>
+      <CartHeader totalItems={cart.length} />
+      
+      <div className="cart-page-background">
+        <div className="cart-container">
+          <div className="cart-layout">
+            <CartList />
+            <OrderSummary />
+          </div>
         </div>
+      </div>
     </div>
   );
 };
