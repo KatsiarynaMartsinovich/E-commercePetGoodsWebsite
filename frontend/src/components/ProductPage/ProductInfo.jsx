@@ -37,7 +37,7 @@ const ProductInfo = (props) => {
 
   if (props.sectionVariant === "button") {
     return (
-      <button className="add-to-cart">
+      <button className="add-to-cart" onClick={props.onClick}>
         <img src={basketIcon} alt="Корзина" />
         <span>{props.buttonText}</span>
       </button>

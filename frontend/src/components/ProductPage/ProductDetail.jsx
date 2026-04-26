@@ -1,11 +1,20 @@
+import { useCart } from "../../context/CartContext";
+
 import ProductGallery from "./ProductGallery";
 import ProductInfo from "./ProductInfo";
 import Rating from "./Rating";
 import QuantitySelector from "./QuantitySelector";
+
 import iconItem from "../../assets/info.svg";
 import iconHeader from "../../assets/specifications.svg";
 
-const ProductDetail = ({ product }) => {
+const ProductDetail = ({ product, id }) => {
+  const { addToCart } = useCart();
+
+  const handleAddToCart = () => {
+    addToCart(product, id);
+  };
+
   return (
     <div className="product-detail">
       <div className="gallery-wrapper">
@@ -40,7 +49,11 @@ const ProductDetail = ({ product }) => {
           quantitySelector={<QuantitySelector />}
         />
 
-        <ProductInfo sectionVariant="button" buttonText="Add to Cart" />
+        <ProductInfo
+          sectionVariant="button"
+          buttonText="Add to Cart"
+          onClick={handleAddToCart}
+        />
 
         <div className="specs-modern">
           <div className="specs-header">

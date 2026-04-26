@@ -1561,3 +1561,30 @@ body {
   width: 20px;
   height: 20px;
 }
+
+.cart-btn {
+  position: relative;
+  padding: 8px;
+  border-radius: 9999px;
+  transition: background-color 0.2s;
+}
+
+.cart-btn:hover {
+  background-color: #f3f4f6;
+}
+
+.cart-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background-color: #ff6900;
+  color: white;
+  font-size: 12px;
+  font-weight: 300;
+  width: 20px;
+  height: 20px;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

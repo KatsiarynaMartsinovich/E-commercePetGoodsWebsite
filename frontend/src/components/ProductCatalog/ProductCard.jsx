@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { useCart } from "../../context/CartContext";
+
 import star from '../../assets/star.svg';
 import half_star from '../../assets/half_star.svg';
 import empty_star from '../../assets/empty_star.svg';
@@ -28,6 +30,13 @@ const renderStars = (rating) => {
 };
 
 const ProductCard = ({ product, id }) => {
+  const { addToCart } = useCart();
+
+  const handleAdd = (e) => {
+    e.preventDefault();
+    addToCart(product, id);
+  };
+
   return (
     <Link to={`/product/${id}`} className="product-card">
       <div className="product-image-wrapper">
@@ -45,7 +54,7 @@ const ProductCard = ({ product, id }) => {
             <div className="overlay-bottom">
               <p className="overlay-price">${product.price}</p>
 
-              <button className="add-to-cart-btn">
+              <button className="add-to-cart-btn" onClick={handleAdd}>
                 <img src={cartIcon} alt="Add to cart" />
               </button>
             </div>
