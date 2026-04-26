@@ -12,12 +12,10 @@ const getInitialCart = () => {
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState(getInitialCart);
 
-  // Сохраняем в localStorage
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
-  // Добавление товара
   const addToCart = (product, id) => {
     setCart((prev) => {
       const existing = prev.find((item) => item.id === id);
@@ -34,7 +32,6 @@ export const CartProvider = ({ children }) => {
     });
   };
 
-  // Общее количество товаров
   const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
 
   return (

@@ -1,18 +1,16 @@
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 import EmptyCartCard from "../components/Cart/EmptyCartCard";
+import CartContent from "../components/Cart/CartContent";
+import { useCart } from "../context/CartContext";
 
 const Cart = () => {
+  const { cart } = useCart();
+
   return (
     <>
       <Header />
-
-      <div className="cart-page">
-        <div className="cart-page__center">
-          <EmptyCartCard />
-        </div>
-      </div>
-    
+      {cart.length === 0 ? <EmptyCartCard /> : <CartContent />}
       <Footer />
     </>
   );

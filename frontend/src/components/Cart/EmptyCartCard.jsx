@@ -16,23 +16,27 @@ const PrimaryButton = () => {
 
 const EmptyCartCard = () => {
   return (
-    <div className="ecc-card">
-      <div className="ecc-icon-wrapper">
-        <img
-          src={package_icon}
-          alt="Icon"
-          className="ecc-icon"
-        />
+      <div className="cart-page">
+        <div className="cart-page__center">
+          <div className="ecc-card">
+            <div className="ecc-icon-wrapper">
+              <img
+                src={package_icon}
+                alt="Icon"
+                className="ecc-icon"
+              />
+            </div>
+        
+            <h2 className="ecc-title">Your cart is empty</h2>
+        
+            <p className="ecc-text">
+              Discover amazing products for your furry friends!
+            </p>
+        
+            <PrimaryButton />
+          </div>
+        </div>
       </div>
-
-      <h2 className="ecc-title">Your cart is empty</h2>
-
-      <p className="ecc-text">
-        Discover amazing products for your furry friends!
-      </p>
-
-      <PrimaryButton />
-    </div>
   );
 };
 
