@@ -2026,7 +2026,7 @@ body {
   box-shadow: 0 0 0 2px rgba(249,115,22,0.2);
 }
 
-.promo button {
+.promo-button {
   padding: 12px 20px;
   background: #101828;
   color: white;
@@ -2036,7 +2036,7 @@ body {
   border: none;
 }
 
-.promo button:hover {
+.promo-button:hover {
   background: #1e2939;
 }
 
@@ -2200,6 +2200,78 @@ body {
 
 .continue:hover {
   color: #FF6900;
+}
+
+.promo-success {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background: #ecfdf5;
+  border: 2px solid #bbf7d0;
+  border-radius: 14px;
+  padding: 12px 14px;
+}
+
+.promo-success-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.promo-check {
+  width: 32px;
+  height: 32px;
+  background: #22c55e;
+  border-radius: 999px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: white;
+  font-weight: 700;
+}
+
+.promo-code {
+  font-size: 14px;
+  font-weight: 700;
+  color: #14532d;
+  margin: 0;
+}
+
+.promo-text {
+  font-size: 12px;
+  color: #15803d;
+  margin: 0;
+}
+
+.promo-remove {
+  width: 28px;
+  height: 28px;
+
+  border-radius: 999px;
+  border: none;
+  background: transparent;
+
+  cursor: pointer;
+  color: #166534;
+  font-size: 16px;
+}
+
+.promo-remove:hover {
+  background: #bbf7d0;
+}
+
+.discount {
+  color: #16a34a !important;
+  font-weight: 600;
+}
+
+.summary-prices .total {
+  border-top: 2px solid #111;
+  padding-top: 12px;
+  align-items: center;
 }
 
 .toaster-wrapper {
