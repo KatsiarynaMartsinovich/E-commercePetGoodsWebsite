@@ -8,7 +8,7 @@ const ToastItem = ({ toast, index, totalCount }) => {
 
   const reversedIndex = totalCount - 1 - index;
   const scale = 1 - reversedIndex * 0.04;
-  const translateY = reversedIndex * 46;
+  const translateY = reversedIndex * 35;
 
   const onPointerDown = (e) => {
     setDragging(true);
@@ -30,7 +30,6 @@ const ToastItem = ({ toast, index, totalCount }) => {
     setDragging(false);
 
     if (x > 120) {
-      ref.current.style.transition = "all 0.2s ease";
       setX(500);
       return;
     }
@@ -43,18 +42,15 @@ const ToastItem = ({ toast, index, totalCount }) => {
       ref={ref}
       className="toast-item"
       data-index={index}
-      style={{
-        "--i": reversedIndex,
-        transform: `
-          translateX(${x}px)
-          translateY(${translateY}px)
-          scale(${scale})
-        `,
-        zIndex: 100 - reversedIndex,
-        transition: dragging ? "none" : "transform 0.25s ease, opacity 0.25s ease",
-        touchAction: "none",
-        cursor: "grab",
-      }}
+        style={{
+          "--x": `${x}px`,
+          "--y": `${translateY}px`,
+          "--scale": scale,
+          zIndex: 100 - reversedIndex,
+          transition: dragging ? "none" : "transform 0.25s ease, opacity 0.25s ease",
+          touchAction: "none",
+          cursor: "grab",
+        }}
       onPointerDown={onPointerDown}
       onPointerMove={onPointerMove}
       onPointerUp={onPointerUp}

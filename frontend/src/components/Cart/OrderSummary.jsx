@@ -1,7 +1,13 @@
+import { useState } from "react";
 import { useCart } from "../../context/CartContext";
+import { useToast } from "../../context/ToastContext";
+import { validatePromoCode } from "../../utils/promoCode";
 
 const OrderSummary = () => {
   const { cart } = useCart();
+  const { showToast } = useToast();
+
+  const [promo, setPromo] = useState("");
 
   const subtotal = cart.reduce(
     (sum, item) => sum + item.price * item.quantity,
@@ -13,10 +19,27 @@ const OrderSummary = () => {
 
   const totalItems = cart.length;
 
+  const handleApplyPromo = () => {
+    const result = validatePromoCode(promo);
+
+    if (result.status === "empty") {
+      return;
+    }
+
+    if (result.status === "valid") {
+      showToast("Promo code applied! 10% discount");
+      return;
+    }
+
+    if (result.status === "invalid") {
+      showToast("Invalid promo code");
+    }
+  };
+
   return (
     <div className="summary-wrapper">
       <div className="summary">
-        
+
         <div className="summary-header">
           <h2>Order Summary</h2>
           <p>{totalItems} items in your bag</p>
@@ -34,8 +57,15 @@ const OrderSummary = () => {
             </label>
 
             <div className="promo-row">
-              <input placeholder="Enter code" />
-              <button>Apply</button>
+              <input
+                placeholder="Enter code"
+                value={promo}
+                onChange={(e) => setPromo(e.target.value)}
+              />
+
+              <button onClick={handleApplyPromo}>
+                Apply
+              </button>
             </div>
           </div>
 
@@ -95,6 +125,7 @@ const OrderSummary = () => {
           </button>
 
           <a className="continue">← Continue Shopping</a>
+
         </div>
       </div>
     </div>
