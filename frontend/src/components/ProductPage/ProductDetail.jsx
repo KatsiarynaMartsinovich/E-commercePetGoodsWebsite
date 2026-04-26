@@ -1,4 +1,6 @@
+import { useState } from "react";
 import { useCart } from "../../context/CartContext";
+import { useToast } from "../../context/ToastContext";
 
 import ProductGallery from "./ProductGallery";
 import ProductInfo from "./ProductInfo";
@@ -10,9 +12,16 @@ import iconHeader from "../../assets/specifications.svg";
 
 const ProductDetail = ({ product, id }) => {
   const { addToCart } = useCart();
+  const { showToast } = useToast();
+
+  const [quantity, setQuantity] = useState(1);
 
   const handleAddToCart = () => {
-    addToCart(product, id);
+    addToCart(product, id, quantity);
+
+    showToast(
+      `Added ${quantity} ${product.name} to cart`
+    );
   };
 
   return (
@@ -46,7 +55,12 @@ const ProductDetail = ({ product, id }) => {
         <ProductInfo
           sectionVariant="quantity"
           quantityLabel="Quantity:"
-          quantitySelector={<QuantitySelector />}
+          quantitySelector={
+            <QuantitySelector
+              value={quantity}
+              onChange={setQuantity}
+            />
+          }
         />
 
         <ProductInfo

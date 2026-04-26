@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
-
+import { useToast } from "../../context/ToastContext";
 import star from '../../assets/star.svg';
 import half_star from '../../assets/half_star.svg';
 import empty_star from '../../assets/empty_star.svg';
@@ -31,10 +31,14 @@ const renderStars = (rating) => {
 
 const ProductCard = ({ product, id }) => {
   const { addToCart } = useCart();
+  const { showToast } = useToast();
 
   const handleAdd = (e) => {
     e.preventDefault();
+
     addToCart(product, id);
+
+    showToast(`${product.name} added to cart!`);
   };
 
   return (

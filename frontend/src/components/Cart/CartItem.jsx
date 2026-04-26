@@ -1,7 +1,14 @@
 import { useCart } from "../../context/CartContext";
+import { useToast } from "../../context/ToastContext";
 
 const CartItem = ({ item }) => {
   const { addToCart, decreaseFromCart, removeFromCart } = useCart();
+  const { showToast } = useToast();
+
+  const handleRemove = () => {
+    removeFromCart(item.id);
+    showToast(`${item.name} removed from cart`);
+  };
 
   return (
     <div className="cart-card group">
@@ -20,9 +27,7 @@ const CartItem = ({ item }) => {
 
           <div className="cart-qty-wrapper">
             <div className="cart-qty">
-              <button
-                onClick={() => decreaseFromCart(item.id)}
-              >
+              <button onClick={() => decreaseFromCart(item.id)}>
                 –
               </button>
 
@@ -47,7 +52,7 @@ const CartItem = ({ item }) => {
             <button
               className="remove-btn"
               aria-label="Remove item"
-              onClick={() => removeFromCart(item.id)}
+              onClick={handleRemove}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

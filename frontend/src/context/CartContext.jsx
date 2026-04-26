@@ -16,19 +16,19 @@ export const CartProvider = ({ children }) => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
-  const addToCart = (product, id) => {
+  const addToCart = (product, id, quantity = 1) => {
     setCart((prev) => {
       const existing = prev.find((item) => item.id === id);
 
       if (existing) {
         return prev.map((item) =>
           item.id === id
-            ? { ...item, quantity: item.quantity + 1 }
+            ? { ...item, quantity: item.quantity + quantity }
             : item
         );
       }
 
-      return [...prev, { ...product, id, quantity: 1 }];
+      return [...prev, { ...product, id, quantity }];
     });
   };
 

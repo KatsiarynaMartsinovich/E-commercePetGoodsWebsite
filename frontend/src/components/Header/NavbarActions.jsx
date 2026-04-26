@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
 
 import search from '../../assets/search.svg';
@@ -13,7 +14,7 @@ const NavbarActions = ({ toggleMenu }) => {
         <img src={search} alt="search" />
       </button>
 
-      <a href="/cart" className="icon-btn cart-btn">
+      <Link to="/cart" className="icon-btn cart-btn">
         <img src={basket} alt="cart" />
 
         {totalCount > 0 && (
@@ -21,7 +22,7 @@ const NavbarActions = ({ toggleMenu }) => {
             {totalCount}
           </span>
         )}
-      </a>
+      </Link>
 
       <button className="icon-btn mobile-only" onClick={toggleMenu}>
         <img src={open} alt="menu" />

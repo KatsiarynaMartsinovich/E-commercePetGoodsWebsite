@@ -1,19 +1,19 @@
-import { useState } from "react";
+const QuantitySelector = ({ value, onChange }) => {
+  const decrease = () => {
+    onChange(Math.max(1, value - 1));
+  };
 
-const QuantitySelector = () => {
-  const [count, setCount] = useState(1);
+  const increase = () => {
+    onChange(value + 1);
+  };
 
   return (
     <div className="quantity">
-      <button onClick={() => setCount(Math.max(1, count - 1))}>
-        –
-      </button>
+      <button onClick={decrease}>–</button>
 
-      <span>{count}</span>
+      <span>{value}</span>
 
-      <button onClick={() => setCount(count + 1)}>
-        +
-      </button>
+      <button onClick={increase}>+</button>
     </div>
   );
 };

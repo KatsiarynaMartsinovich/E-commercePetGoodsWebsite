@@ -2099,7 +2099,7 @@ body {
 }
 
 .info-box p {
-  margin: 0;  
+  margin: 0;
   line-height: 20px;
   font-size: 14px;
   font-weight: 600;
@@ -2117,7 +2117,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;   
+  flex-shrink: 0;
 }
 
 .info-box svg {
@@ -2200,4 +2200,65 @@ body {
 
 .continue:hover {
   color: #FF6900;
+}
+
+.toaster-wrapper {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 400px;
+  display: flex;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.toaster {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0px;
+  width: 356px;
+  z-index: 9999;
+  perspective: 1000px;
+}
+
+.toaster .toast-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #ffffff;
+  color: #0a0a0a;
+  padding: 14px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  transform-origin: top center;
+  will-change: transform;
+}
+
+.toaster:hover{
+  gap: 14px;
+}
+
+.toaster:hover .toast-item {
+  transform: translateX(var(--x, 0px)) translateY(0px) scale(1) !important;
+}
+
+.toast-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+}
+
+.toast-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.toast-title {
+  font-size: 13px;
+  font-weight: 500;
 }
