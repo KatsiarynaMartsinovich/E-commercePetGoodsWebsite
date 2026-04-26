@@ -32,10 +32,38 @@ export const CartProvider = ({ children }) => {
     });
   };
 
+  const decreaseFromCart = (id) => {
+    setCart((prev) =>
+      prev.map((item) => {
+        if (item.id !== id) return item;
+
+        // не даём уйти ниже 1
+        if (item.quantity <= 1) return item;
+
+        return {
+          ...item,
+          quantity: item.quantity - 1,
+        };
+      })
+    );
+  };
+
+  const removeFromCart = (id) => {
+    setCart((prev) => prev.filter((item) => item.id !== id));
+  };
+
   const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
 
   return (
-    <CartContext.Provider value={{ cart, addToCart, totalCount }}>
+    <CartContext.Provider
+      value={{
+        cart,
+        addToCart,
+        decreaseFromCart,
+        removeFromCart,
+        totalCount,
+      }}
+    >
       {children}
     </CartContext.Provider>
   );

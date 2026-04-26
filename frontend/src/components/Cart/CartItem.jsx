@@ -1,7 +1,7 @@
 import { useCart } from "../../context/CartContext";
 
 const CartItem = ({ item }) => {
-  const { addToCart } = useCart();
+  const { addToCart, decreaseFromCart, removeFromCart } = useCart();
 
   return (
     <div className="cart-card group">
@@ -20,9 +20,17 @@ const CartItem = ({ item }) => {
 
           <div className="cart-qty-wrapper">
             <div className="cart-qty">
-              <button>–</button>
+              <button
+                onClick={() => decreaseFromCart(item.id)}
+              >
+                –
+              </button>
+
               <span>{item.quantity}</span>
-              <button onClick={() => addToCart(item, item.id)}>+</button>
+
+              <button onClick={() => addToCart(item, item.id)}>
+                +
+              </button>
             </div>
           </div>
 
@@ -36,7 +44,11 @@ const CartItem = ({ item }) => {
               </p>
             </div>
 
-            <button className="remove-btn" aria-label="Remove item">
+            <button
+              className="remove-btn"
+              aria-label="Remove item"
+              onClick={() => removeFromCart(item.id)}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="icon-trash"
