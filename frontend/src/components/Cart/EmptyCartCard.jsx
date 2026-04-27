@@ -1,16 +1,17 @@
 import package_icon from '../../assets/package.svg';
 import next from '../../assets/next_white.svg';
+import { Link } from "react-router-dom";
 
 const PrimaryButton = () => {
   return (
-    <a href="/" className="ecc-button">
+    <Link to="/" className="ecc-button">
       Start Shopping
       <img
         src={next}
         alt="Icon"
         className="ecc-button-icon"
       />
-    </a>
+    </Link>
   );
 };
 

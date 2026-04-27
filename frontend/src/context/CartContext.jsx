@@ -37,7 +37,6 @@ export const CartProvider = ({ children }) => {
       prev.map((item) => {
         if (item.id !== id) return item;
 
-        // не даём уйти ниже 1
         if (item.quantity <= 1) return item;
 
         return {

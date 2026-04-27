@@ -1,9 +1,10 @@
+import { Link } from 'react-router-dom';
 import logo from '../../assets/logo.svg';
 
 const FooterBrand = () => {
   return (
     <div>
-      <a href="/" className="footer-brand">
+      <Link to="/" className="footer-brand">
         <div className="footer-logo">
           <img
             src={logo}
@@ -11,7 +12,7 @@ const FooterBrand = () => {
           />
         </div>
         <span>PawsStore</span>
-      </a>
+      </Link>
 
       <p className="footer-text">
         Your trusted source for premium pet supplies and accessories.

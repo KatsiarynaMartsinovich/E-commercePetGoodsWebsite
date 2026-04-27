@@ -2203,6 +2203,7 @@ body {
   font-weight: 500;
   color: #4A5565;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .continue:hover {
@@ -2280,8 +2281,6 @@ body {
   padding-top: 12px;
   align-items: center;
 }
-
-
 
 .toaster-wrapper {
   position: fixed;

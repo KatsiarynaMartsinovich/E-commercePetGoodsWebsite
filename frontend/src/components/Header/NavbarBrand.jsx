@@ -1,8 +1,8 @@
 import logo from '../../assets/logo.svg';
-
+import { Link } from "react-router-dom";
 const NavbarBrand = () => {
   return (
-    <a href="/" className="brand">
+    <Link to="/" href="/" className="brand">
       <div className="brand-logo">
         <img
           src={logo} 
@@ -10,7 +10,7 @@ const NavbarBrand = () => {
         />
       </div>
       <span className="brand-text">PawsStore</span>
-    </a>
+    </Link>
   );
 };
 

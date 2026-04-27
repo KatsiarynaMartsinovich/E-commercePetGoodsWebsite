@@ -1,13 +1,14 @@
+import { Link } from "react-router-dom";
 import nextIcon from "../../assets/next.svg";
 
 const Breadcrumbs = ({ product }) => {
   return (
     <div className="breadcrumbs">
-      <a href="/">Home</a>
+      <Link to="/">Home</Link>
 
       <img src={nextIcon} alt=">" className="breadcrumb-icon" />
 
-      <a href="/">{product.category}</a>
+      <Link to="/">{product.category}</Link>
 
       <img src={nextIcon} alt=">" className="breadcrumb-icon" />
 

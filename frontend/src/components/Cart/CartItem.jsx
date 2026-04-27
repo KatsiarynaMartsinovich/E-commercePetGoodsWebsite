@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
 import { useToast } from "../../context/ToastContext";
 
@@ -13,15 +14,15 @@ const CartItem = ({ item }) => {
   return (
     <div className="cart-card group">
       <div className="cart-card-inner">
-        <a href={`/product/${item.id}`} className="cart-image">
+        <Link to={`/product/${item.id}`} className="cart-image">
           <img src={item.image} alt={item.name} />
-        </a>
+        </Link>
 
         <div className="cart-grid">
           <div className="cart-info">
-            <a href={`/product/${item.id}`} className="cart-title">
+            <Link to={`/product/${item.id}`} className="cart-title">
               {item.name}
-            </a>
+            </Link>
             <p className="cart-category">{item.category}</p>
           </div>
 

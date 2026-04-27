@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useCart } from "../../context/CartContext";
 import { useToast } from "../../context/ToastContext";
@@ -164,7 +165,6 @@ const OrderSummary = () => {
 
           </div>
 
-          {/* BUTTON */}
           <button className="checkout">
             <svg viewBox="0 0 24 24">
               <rect x="2" y="5" width="20" height="14" rx="2" />
@@ -173,7 +173,7 @@ const OrderSummary = () => {
             Proceed to Checkout
           </button>
 
-          <a className="continue">← Continue Shopping</a>
+          <Link to="/" className="continue">← Continue Shopping</Link>
 
         </div>
       </div>

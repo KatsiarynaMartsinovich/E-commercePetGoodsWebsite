@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
-
 import search from '../../assets/search.svg';
 import basket from '../../assets/basket.svg';
 import open from '../../assets/open.svg';

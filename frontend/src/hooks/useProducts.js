@@ -11,12 +11,10 @@ export const useProducts = () => {
 
   const [sortOption, setSortOption] = useState("Name (A-Z)");
 
-  // 👉 сначала фильтруем
   const filteredProducts = useMemo(() => {
     return filterProducts(productsData, filters);
   }, [filters]);
 
-  // 👉 потом сортируем ВСЕГДА
   const sortedProducts = useMemo(() => {
     return sortProducts(filteredProducts, sortOption);
   }, [filteredProducts, sortOption]);
