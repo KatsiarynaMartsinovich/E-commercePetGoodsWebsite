@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/E-commercePetGoodsWebsite/static/css/main.6e995fd4.css",
+    "main.css": "/E-commercePetGoodsWebsite/static/css/main.2ecb9a8f.css",
     "main.js": "/E-commercePetGoodsWebsite/static/js/main.6658c849.js",
     "static/js/453.825386d9.chunk.js": "/E-commercePetGoodsWebsite/static/js/453.825386d9.chunk.js",
     "static/media/filter.svg": "/E-commercePetGoodsWebsite/static/media/filter.8ca5f1d77dbc4aeb72ccbaa761b615ea.svg",
@@ -25,12 +25,12 @@
     "static/media/close.svg": "/E-commercePetGoodsWebsite/static/media/close.0c6231373a2fc0d6d7ead045cb38d138.svg",
     "index.html": "/E-commercePetGoodsWebsite/index.html",
     "static/media/next_img.svg": "/E-commercePetGoodsWebsite/static/media/next_img.81783347ed608b4fcb0e93db714b97c7.svg",
-    "main.6e995fd4.css.map": "/E-commercePetGoodsWebsite/static/css/main.6e995fd4.css.map",
+    "main.2ecb9a8f.css.map": "/E-commercePetGoodsWebsite/static/css/main.2ecb9a8f.css.map",
     "main.6658c849.js.map": "/E-commercePetGoodsWebsite/static/js/main.6658c849.js.map",
     "453.825386d9.chunk.js.map": "/E-commercePetGoodsWebsite/static/js/453.825386d9.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.6e995fd4.css",
+    "static/css/main.2ecb9a8f.css",
     "static/js/main.6658c849.js"
   ]
 }
