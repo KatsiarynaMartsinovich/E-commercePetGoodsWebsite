@@ -1,0 +1,27 @@
+.hero {
+  background: linear-gradient(90deg, var(--color-orange-500) 0%, var(--color-pink-500) 100%);
+  color: white;
+  padding: 48px 0;
+}
+
+.hero-title {
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+
+.hero-subtitle {
+  font-size: 18px;
+  color: var(--color-orange-100);
+}
+
+@media (min-width: 768px) {
+  .hero {
+    padding: 64px 0;
+  }
+
+  .hero-title {
+    font-size: 40px;
+  }
+}

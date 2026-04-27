@@ -1,0 +1,142 @@
+.product-card-body {
+  padding: 4px 16px;
+}
+
+.product-card-body h3 {
+  color: var(--color-gray-900);
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.product-card-body p {
+  color: var(--color-orange-500);
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.cart-page {
+  box-sizing: border-box;
+  caret-color: transparent;
+  display: flex;
+  flex-direction: column;
+  min-height: 700px;
+  background: linear-gradient(
+    to right bottom,
+    var(--color-orange-100) 0%,
+    var(--color-white) 50%,
+    var(--color-pink-50) 100%
+  );
+}
+
+@media (min-width: 687px) and (max-width: 1023px) {
+  .cart-page {
+    min-height: 1000px;
+  }
+}
+
+@media (max-width: 686px) {
+  .cart-page {
+    min-height: 800px;
+  }
+}
+
+.cart-page__center {
+  box-sizing: border-box;
+  caret-color: transparent;
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  padding: 0 16px;
+}
+
+.ecc-card {
+  box-sizing: border-box;
+  caret-color: transparent;
+  max-width: 450px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.ecc-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 130px;
+  height: 130px;
+  margin: 0 auto 1.5rem auto;
+  border-radius: 9999999px;
+  background: linear-gradient(
+    to right bottom,
+    var(--color-orange-100) 0%,
+    var(--color-pink-100) 100%
+  );
+}
+
+.ecc-icon {
+  width: 64px;
+  height: 64px;
+}
+
+.ecc-title {
+  font-size: 30px;
+  line-height: 36px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: var(--color-gray-900);
+}
+
+.ecc-text {
+  font-size: 18px;
+  line-height: 28px;
+  margin-bottom: 32px;
+  color: var(--color-gray-600);
+}
+
+.ecc-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 32px;
+  border-radius: 9999999px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 16px;
+  color: white;
+  background: linear-gradient(
+    to right,
+    var(--color-orange-500) 0%,
+    var(--color-pink-500) 100%
+  );
+  box-sizing: border-box;
+  caret-color: transparent;
+}
+
+.ecc-button-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.cart-btn {
+  position: relative;
+  padding: 8px;
+  border-radius: 9999px;
+  transition: background-color 0.2s;
+}
+
+.cart-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background-color: var(--color-orange-500);
+  color: white;
+  font-size: 12px;
+  font-weight: 300;
+  width: 20px;
+  height: 20px;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
