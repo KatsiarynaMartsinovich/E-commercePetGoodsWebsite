@@ -1,26 +1,74 @@
-import Fastify from 'fastify';
-import 'dotenv/config';
+import Fastify, { FastifyError } from 'fastify';
+import {
+  ZodTypeProvider,
+  serializerCompiler,
+  validatorCompiler,
+} from 'fastify-type-provider-zod';
 
-const app = Fastify({
+import jwtPlugin from './plugins/jwt.js';
+import authRoutes from './routes/auth.routes.js';
+
+const server = Fastify({
   logger: {
-    level: process.env.NODE_ENV === 'production' ? 'info' : 'debug',
+    level: process.env.LOG_LEVEL ?? 'info',
+    transport:
+      process.env.NODE_ENV === 'production'
+        ? undefined
+        : {
+            target: 'pino-pretty',
+            options: { colorize: true, translateTime: 'HH:MM:ss', ignore: 'pid,hostname' },
+          },
   },
+}).withTypeProvider<ZodTypeProvider>();
+
+server.setValidatorCompiler(validatorCompiler);
+server.setSerializerCompiler(serializerCompiler);
+
+server.setErrorHandler((error: FastifyError, _request, reply) => {
+  if (error.validation) {
+    return reply.code(400).send({
+      error: 'Validation Error',
+      message: error.message,
+      details: error.validation,
+    });
+  }
+  
+  server.log.error(error);
+  
+  return reply.code(error.statusCode ?? 500).send({
+    error: error.name ?? 'Internal Server Error',
+    message: error.message,
+  });
 });
 
-app.get('/health', async () => {
-  return { status: 'ok', timestamp: new Date().toISOString() };
-});
+server.get('/health', async () => ({ status: 'ok', uptime: process.uptime() }));
+
+server.register(jwtPlugin);
+server.register(authRoutes, { prefix: '/api/auth' });
 
 const start = async () => {
+  const port = Number(process.env.PORT ?? 3000);
+  const host = process.env.HOST ?? '0.0.0.0';
   try {
-    const port = Number(process.env.PORT) || 3000;
-    const host = process.env.HOST || '0.0.0.0';
-    await app.listen({ port, host });
-    app.log.info(`Server listening on http://${host}:${port}`);
+    await server.listen({ port, host });
   } catch (err) {
-    app.log.error(err);
+    server.log.error(err);
     process.exit(1);
   }
 };
+
+const shutdown = async (signal: string) => {
+  server.log.info(`Received ${signal}, shutting down gracefully...`);
+  try {
+    await server.close();
+    process.exit(0);
+  } catch (err) {
+    server.log.error(err);
+    process.exit(1);
+  }
+};
+
+process.on('SIGTERM', () => shutdown('SIGTERM'));
+process.on('SIGINT', () => shutdown('SIGINT'));
 
 start();

@@ -14,8 +14,10 @@
     "declaration": false,
     "sourceMap": true,
     "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noUnusedParameters": false, 
+    "noFallthroughCasesInSwitch": true,
+    "allowImportingTsExtensions": false, 
+    "rewriteRelativeImportExtensions": true
   },
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules", "dist"]
