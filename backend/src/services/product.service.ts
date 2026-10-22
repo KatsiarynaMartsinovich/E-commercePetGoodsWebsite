@@ -1,5 +1,12 @@
 import { Prisma } from '@prisma/client';
+import { Redis } from 'ioredis';
 import { prisma } from '../lib/prisma.js';
+import {
+  buildProductCacheKey,
+  getCache,
+  setCache,
+  invalidatePattern,
+} from '../lib/cache.js';
 import {
   ProductListQuery,
   ProductCreateInput,
@@ -15,7 +22,7 @@ function serializeProduct(p: any) {
 }
 
 export class ProductService {
-  static async list(query: ProductListQuery) {
+  static async list(redis: Redis, query: ProductListQuery) {
     const {
       page,
       limit,
@@ -26,6 +33,13 @@ export class ProductService {
       sort_by,
       order,
     } = query;
+
+    const cacheKey = buildProductCacheKey(query as Record<string, unknown>);
+
+    const cached = await getCache<{ items: any[]; meta: any }>(redis, cacheKey);
+    if (cached) {
+      return cached;
+    }
 
     const where: Prisma.ProductWhereInput = {
       ...(search
@@ -59,10 +73,14 @@ export class ProductService {
       prisma.product.count({ where }),
     ]);
 
-    return {
+    const result = {
       items: items.map(serializeProduct),
       meta: buildPaginationMeta(totalItems, page, limit),
     };
+
+    await setCache(redis, cacheKey, result);
+
+    return result;
   }
 
   static async getById(id: string) {
@@ -71,7 +89,7 @@ export class ProductService {
     return serializeProduct(product);
   }
 
-  static async create(data: ProductCreateInput) {
+  static async create(redis: Redis, data: ProductCreateInput) {
     const product = await prisma.product.create({
       data: {
         title: data.title,
@@ -82,10 +100,13 @@ export class ProductService {
         stockQuantity: data.stockQuantity,
       },
     });
+
+    await invalidatePattern(redis, 'products:*');
+
     return serializeProduct(product);
   }
 
-  static async update(id: string, data: ProductUpdateInput) {
+  static async update(redis: Redis, id: string, data: ProductUpdateInput) {
     const existing = await prisma.product.findUnique({ where: { id } });
     if (!existing) throw new Error('Product not found');
 
@@ -100,10 +121,13 @@ export class ProductService {
         ...(data.stockQuantity !== undefined ? { stockQuantity: data.stockQuantity } : {}),
       },
     });
+
+    await invalidatePattern(redis, 'products:*');
+
     return serializeProduct(product);
   }
 
-  static async delete(id: string) {
+  static async delete(redis: Redis, id: string) {
     const existing = await prisma.product.findUnique({ where: { id } });
     if (!existing) throw new Error('Product not found');
 
@@ -111,6 +135,8 @@ export class ProductService {
       prisma.cartItem.deleteMany({ where: { productId: id } }),
       prisma.product.delete({ where: { id } }),
     ]);
+
+    await invalidatePattern(redis, 'products:*');
 
     return { id };
   }
