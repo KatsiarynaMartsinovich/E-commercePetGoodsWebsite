@@ -4,9 +4,11 @@ import {
   serializerCompiler,
   validatorCompiler,
 } from 'fastify-type-provider-zod';
+import multipart from '@fastify/multipart';
 
 import jwtPlugin from './plugins/jwt.js';
 import authRoutes from './routes/auth.routes.js';
+import productRoutes from './routes/product.routes.js';
 
 const server = Fastify({
   logger: {
@@ -43,8 +45,12 @@ server.setErrorHandler((error: FastifyError, _request, reply) => {
 
 server.get('/health', async () => ({ status: 'ok', uptime: process.uptime() }));
 
+server.register(multipart, {
+  limits: { fileSize: 5 * 1024 * 1024, files: 10 },
+});
 server.register(jwtPlugin);
 server.register(authRoutes, { prefix: '/api/auth' });
+server.register(productRoutes, { prefix: '/api/products' });
 
 const start = async () => {
   const port = Number(process.env.PORT ?? 3000);
