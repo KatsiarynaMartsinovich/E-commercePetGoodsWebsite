@@ -32,7 +32,7 @@ export default async function productRoutes(fastify: FastifyInstance) {
   app.get('/', {
     schema: { querystring: productListQuerySchema },
   }, async (request) => {
-    return ProductService.list(request.query);
+    return ProductService.list(app.redis, request.query);
   });
 
   // GET /api/products/:id
@@ -79,7 +79,7 @@ export default async function productRoutes(fastify: FastifyInstance) {
 
       const data = productCreateSchema.parse(payload);
 
-      const product = await ProductService.create(data);
+      const product = await ProductService.create(app.redis, data);
       return reply.code(201).send(product);
     } catch (err: any) {
       if (err.name === 'ZodError') {
@@ -99,7 +99,7 @@ export default async function productRoutes(fastify: FastifyInstance) {
   }, async (request, reply) => {
     try {
       const data = productUpdateSchema.parse(request.body);
-      const product = await ProductService.update(request.params.id, data);
+      const product = await ProductService.update(app.redis, request.params.id, data);
       return product;
     } catch (err: any) {
       if (err.name === 'ZodError') {
@@ -118,7 +118,7 @@ export default async function productRoutes(fastify: FastifyInstance) {
     schema: { params: productIdParamSchema },
   }, async (request, reply) => {
     try {
-      const result = await ProductService.delete(request.params.id);
+      const result = await ProductService.delete(app.redis, request.params.id);
       return reply.code(200).send(result);
     } catch (err: any) {
       if (err.message === 'Product not found') {

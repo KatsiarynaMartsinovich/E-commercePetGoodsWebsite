@@ -5,6 +5,7 @@ import {
   validatorCompiler,
 } from 'fastify-type-provider-zod';
 import multipart from '@fastify/multipart';
+import redisPlugin from './plugins/redis.js';
 
 import jwtPlugin from './plugins/jwt.js';
 import authRoutes from './routes/auth.routes.js';
@@ -49,6 +50,7 @@ server.register(multipart, {
   limits: { fileSize: 5 * 1024 * 1024, files: 10 },
 });
 server.register(jwtPlugin);
+server.register(redisPlugin); 
 server.register(authRoutes, { prefix: '/api/auth' });
 server.register(productRoutes, { prefix: '/api/products' });
 
