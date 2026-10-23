@@ -10,6 +10,7 @@ import redisPlugin from './plugins/redis.js';
 import jwtPlugin from './plugins/jwt.js';
 import authRoutes from './routes/auth.routes.js';
 import productRoutes from './routes/product.routes.js';
+import cartRoutes from './routes/cart.routes.js';
 
 const server = Fastify({
   logger: {
@@ -53,6 +54,7 @@ server.register(jwtPlugin);
 server.register(redisPlugin); 
 server.register(authRoutes, { prefix: '/api/auth' });
 server.register(productRoutes, { prefix: '/api/products' });
+server.register(cartRoutes, { prefix: '/api/cart' });
 
 const start = async () => {
   const port = Number(process.env.PORT ?? 3000);
