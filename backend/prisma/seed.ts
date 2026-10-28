@@ -348,10 +348,14 @@ async function main() {
     },
   ];
 
-  for (const p of products) {
-    await prisma.product.create({ data: p });
+  const existingProducts = await prisma.product.count();
+
+  if (existingProducts > 0) {
+    console.log(`⏭️  Products already exist (${existingProducts}), skipping product seed`);
+  } else {
+    await prisma.product.createMany({ data: products });
+    console.log(`✅ ${products.length} products created`);
   }
-  console.log(`✅ ${products.length} products created`);
 
   console.log('Seed completed successfully!');
 }
