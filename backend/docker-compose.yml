@@ -49,6 +49,7 @@ services:
       SUPABASE_BUCKET: ${SUPABASE_BUCKET}
       PORT: 3000
       HOST: "0.0.0.0"
+      CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:3001}      
     depends_on:
       postgres:
         condition: service_healthy

@@ -7,6 +7,7 @@ import {
 import multipart from '@fastify/multipart';
 import redisPlugin from './plugins/redis.js';
 
+import corsPlugin from './plugins/cors.js';
 import jwtPlugin from './plugins/jwt.js';
 import swaggerPlugin from './plugins/swagger.js';
 
@@ -52,6 +53,7 @@ server.get('/health', async () => ({ status: 'ok', uptime: process.uptime() }));
 server.register(multipart, {
   limits: { fileSize: 5 * 1024 * 1024, files: 10 },
 });
+server.register(corsPlugin);
 server.register(jwtPlugin);
 server.register(redisPlugin); 
 server.register(swaggerPlugin);
