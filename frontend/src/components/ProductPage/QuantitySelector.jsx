@@ -1,10 +1,10 @@
-const QuantitySelector = ({ value, onChange }) => {
+const QuantitySelector = ({ value, onChange, max = Infinity }) => {
   const decrease = () => {
     onChange(Math.max(1, value - 1));
   };
 
   const increase = () => {
-    onChange(value + 1);
+    onChange(Math.min(max, value + 1));
   };
 
   return (

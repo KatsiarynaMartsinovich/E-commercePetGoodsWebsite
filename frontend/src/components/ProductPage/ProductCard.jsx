@@ -1,14 +1,14 @@
 import { Link } from "react-router-dom";
 
-const ProductCard = ({ product, id }) => {
+const ProductCard = ({ product }) => {
   return (
-    <Link to={`/product/${id}`} className="product-card-related">
+    <Link to={`/product/${product.id}`} className="product-card-related">
       <div className="product-card-image">
-        <img src={product.image} alt={product.name} />
+        <img src={product.images?.[0]} alt={product.title} />
       </div>
 
       <div className="product-card-body">
-        <h3>{product.name}</h3>
+        <h3>{product.title}</h3>
         <p>${product.price}</p>
       </div>
     </Link>

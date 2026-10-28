@@ -1,11 +1,8 @@
 import ProductCard from "./ProductCard";
+import { useRelatedProducts } from "../../hooks/useRelatedProducts";
 
-const RelatedProducts = ({ currentProduct, products }) => {
-  const related = products.filter(
-    (item) =>
-      item.category === currentProduct.category &&
-      item.name !== currentProduct.name
-  );
+const RelatedProducts = ({ currentProduct }) => {
+  const related = useRelatedProducts(currentProduct);
 
   if (related.length === 0) return null;
 
@@ -14,19 +11,9 @@ const RelatedProducts = ({ currentProduct, products }) => {
       <h2 className="related-title">Related Products</h2>
 
       <div className="related-grid">
-        {related.map((product) => {
-          const realIndex = products.findIndex(
-            (p) => p.name === product.name
-          );
-
-          return (
-            <ProductCard
-              key={realIndex}
-              product={product}
-              id={realIndex}
-            />
-          );
-        })}
+        {related.map((product) => (
+          <ProductCard key={product.id} product={product} />
+        ))}
       </div>
     </div>
   );
