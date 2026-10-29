@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
-import { useToast } from "../../context/ToastContext";
 import star from '../../assets/star.svg';
 import half_star from '../../assets/half_star.svg';
 import empty_star from '../../assets/empty_star.svg';
 import cartIcon from '../../assets/white_basket.svg';
+import { useAddToCart } from "../../hooks/useAddToCart";
 
 const renderStars = (rating) => {
   const fullStars = Math.floor(rating);
@@ -29,12 +29,11 @@ const renderStars = (rating) => {
 };
 
 const ProductCard = ({ product }) => {
-  const { showToast } = useToast();
+  const addToCart = useAddToCart();
 
   const handleAdd = (e) => {
     e.preventDefault();
-    // ВРЕМЕННО: реальное добавление в корзину подключим на этапе 6
-    showToast("Cart will be connected in stage 6", "info");
+    addToCart(product);
   };
 
   const image = product.images?.[0];

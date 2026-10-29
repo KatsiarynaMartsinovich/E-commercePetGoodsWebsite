@@ -2,54 +2,35 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useCart } from "../../context/CartContext";
 import { useToast } from "../../context/ToastContext";
-import { validatePromoCode } from "../../utils/promoCode";
+   import { TAX_RATE, calculateOrderTotals } from "../../utils/orderTotals";
 
 const OrderSummary = () => {
-  const { cart } = useCart();
+  const { totals, appliedPromo, totalCount, mutating, applyPromo, removePromo } =
+    useCart();
   const { showToast } = useToast();
 
   const [promo, setPromo] = useState("");
-  const [appliedPromo, setAppliedPromo] = useState(null);
+  const { tax, grandTotal } = calculateOrderTotals(totals);
 
-  const subtotal = cart.reduce(
-    (sum, item) => sum + item.price * item.quantity,
-    0
-  );
+  const handleApplyPromo = async () => {
+    if (!promo.trim()) return;
 
-  const tax = subtotal * 0.08;
-
-  const discount = appliedPromo?.discount
-    ? subtotal * appliedPromo.discount
-    : 0;
-
-  const total = subtotal + tax - discount;
-
-  const totalItems = cart.length;
-
-  const handleApplyPromo = () => {
-    const result = validatePromoCode(promo);
-
-    if (result.status === "empty") return;
-
-    if (result.status === "valid") {
-      setAppliedPromo({
-        code: promo.trim().toUpperCase(),
-        discount: result.discount,
-      });
-
-      showToast("Promo code applied! 10% discount");
+    try {
+      const applied = await applyPromo(promo);
+      showToast(`Promo code applied! ${applied.discountPercentage}% discount`);
       setPromo("");
-      return;
-    }
-
-    if (result.status === "invalid") {
-      showToast("Invalid promo code");
+    } catch (err) {
+      showToast(err.status === 404 ? "Invalid promo code" : err.message, "error");
     }
   };
 
-  const handleRemovePromo = () => {
-    setAppliedPromo(null);
-    showToast("Promo code removed");
+  const handleRemovePromo = async () => {
+    try {
+      await removePromo();
+      showToast("Promo code removed");
+    } catch (err) {
+      showToast(err.message, "error");
+    }
   };
 
   return (
@@ -58,7 +39,7 @@ const OrderSummary = () => {
 
         <div className="summary-header">
           <h2>Order Summary</h2>
-          <p>{totalItems} items in your bag</p>
+          <p>{totalCount} items in your bag</p>
         </div>
 
         <div className="summary-body">
@@ -79,9 +60,14 @@ const OrderSummary = () => {
                   placeholder="Enter code"
                   value={promo}
                   onChange={(e) => setPromo(e.target.value)}
+                  onKeyDown={(e) => e.key === "Enter" && handleApplyPromo()}
                 />
 
-                <button className="promo-button" onClick={handleApplyPromo}>
+                <button
+                  className="promo-button"
+                  onClick={handleApplyPromo}
+                  disabled={mutating}
+                >
                   Apply
                 </button>
               </div>
@@ -92,13 +78,16 @@ const OrderSummary = () => {
 
                   <div>
                     <p className="promo-code">{appliedPromo.code}</p>
-                    <p className="promo-text">10% discount applied</p>
+                    <p className="promo-text">
+                      {appliedPromo.discountPercentage}% discount applied
+                    </p>
                   </div>
                 </div>
 
                 <button
                   className="promo-remove"
                   onClick={handleRemovePromo}
+                  disabled={mutating}
                 >
                   ✕
                 </button>
@@ -109,28 +98,27 @@ const OrderSummary = () => {
           <div className="summary-prices">
             <div>
               <span className="span-description">Subtotal</span>
-              <span>${subtotal.toFixed(2)}</span>
+              <span>${totals.subtotal.toFixed(2)}</span>
             </div>
-
             <div>
-              <span className="span-description">Tax (8%)</span>
+              <span className="span-description">
+                Tax ({Math.round(TAX_RATE * 100)}%)
+              </span>
               <span>${tax.toFixed(2)}</span>
             </div>
-
             {appliedPromo && (
               <div>
                 <span className="span-description discount">
-                  Discount (10%)
+                  Discount ({totals.discountPercentage}%)
                 </span>
                 <span className="discount">
-                  -${discount.toFixed(2)}
+                  -${totals.discountAmount.toFixed(2)}
                 </span>
               </div>
             )}
-
             <div className="total">
               <span className="span-description-total">Total</span>
-              <span>${total.toFixed(2)}</span>
+              <span>${grandTotal.toFixed(2)}</span>
             </div>
           </div>
 

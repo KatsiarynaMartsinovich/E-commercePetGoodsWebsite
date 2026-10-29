@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useToast } from "../../context/ToastContext";
+import { useAddToCart } from "../../hooks/useAddToCart";
 
 import ProductGallery from "./ProductGallery";
 import ProductInfo from "./ProductInfo";
@@ -7,15 +7,14 @@ import Rating from "./Rating";
 import QuantitySelector from "./QuantitySelector";
 
 const ProductDetail = ({ product }) => {
-  const { showToast } = useToast();
+  const addToCart = useAddToCart();
 
   const [quantity, setQuantity] = useState(1);
 
   const inStock = product.stockQuantity > 0;
 
   const handleAddToCart = () => {
-    // ВРЕМЕННО: реальное добавление в корзину подключим на этапе 6
-    showToast("Cart will be connected in stage 6");
+    addToCart(product, quantity);
   };
 
   return (
