@@ -9,6 +9,7 @@
 @import "./cart.css";
 @import "./toaster.css";
 @import "./search_pagination.css";
+@import "./auth.css";
 
 body {
   margin: 0;
