@@ -23,7 +23,11 @@ const UserMenu = () => {
 
   return (
     <div className="user-menu">
-      {isAdmin && <span className="user-menu-badge">ADMIN</span>}
+      {isAdmin && (
+        <Link to="/admin" className="user-menu-admin-link">
+          Admin
+        </Link>
+      )}
       <span className="user-menu-email" title={user.email}>
         {user.email}
       </span>
