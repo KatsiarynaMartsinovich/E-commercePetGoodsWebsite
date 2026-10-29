@@ -4,7 +4,7 @@ import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 import Breadcrumbs from "../components/ProductPage/Breadcrumbs";
 import ProductDetail from "../components/ProductPage/ProductDetail";
-import ProductStatus from "../components/ProductPage/ProductStatus";
+import PageStatus from "../components/common/PageStatus";
 import RelatedProducts from "../components/ProductPage/RelatedProducts";
 import { useProduct } from "../hooks/useProduct";
 
@@ -18,12 +18,12 @@ const Product = () => {
 
   const renderContent = () => {
     if (loading) {
-      return <ProductStatus title="Loading product..." />;
+      return <PageStatus title="Loading product..." />;
     }
 
     if (notFound) {
       return (
-        <ProductStatus
+        <PageStatus
           title="Product not found"
           text="The product you are looking for does not exist or was removed."
           showHomeLink
@@ -32,7 +32,7 @@ const Product = () => {
     }
 
     if (error) {
-      return <ProductStatus title="Something went wrong" text={error} showHomeLink />;
+      return <PageStatus title="Something went wrong" text={error} showHomeLink />;
     }
 
     return (
