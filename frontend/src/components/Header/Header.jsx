@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useState } from "react";
 import NavbarBrand from "./NavbarBrand";
 import DesktopNav from "./DesktopNav";
@@ -22,10 +23,10 @@ const Header = () => {
 
         {isOpen && (
           <div className="mobile-menu">
-            <a href="/">Shop</a>
-            <a href="/">Categories</a>
-            <a href="/">Deals</a>
-            <a href="/">About</a>
+            <Link to="/">Shop</Link>
+            <Link to="/">Categories</Link>
+            <Link to="/">Deals</Link>
+            <Link to="/">About</Link>
           </div>
         )}
       </div>

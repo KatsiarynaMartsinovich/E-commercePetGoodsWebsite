@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import FooterBrand from "./FooterBrand";
 import FooterLinksColumn from "./FooterLinksColumn";
 import NewsletterSignup from "./NewsletterSignup";
@@ -39,15 +40,15 @@ const Footer = () => {
           <p>© 2026 PawsStore. All rights reserved.</p>
 
           <div className="footer-socials">
-            <a href="#">
+            <Link to="/">
               <img src={facebook} alt="social" />
-            </a>
-            <a href="#">
+            </Link>
+            <Link to="/">
               <img src={twitter} alt="social" />
-            </a>
-            <a href="#">
+            </Link>
+            <Link to="/">
               <img src={instagram} alt="social" />
-            </a>
+            </Link>
           </div>
         </div>
       </div>
