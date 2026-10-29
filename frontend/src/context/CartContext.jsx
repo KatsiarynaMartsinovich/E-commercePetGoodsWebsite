@@ -1,66 +1,125 @@
 import { createContext, useContext, useEffect, useState } from "react";
+import { cartApi } from "../api/cartApi";
+import { useAuth } from "./AuthContext";
+import { useToast } from "./ToastContext";
 
 const CartContext = createContext();
 
 export const useCart = () => useContext(CartContext);
 
-const getInitialCart = () => {
-  const stored = localStorage.getItem("cart");
-  return stored ? JSON.parse(stored) : [];
+const EMPTY_CART = {
+  id: null,
+  items: [],
+  totals: { subtotal: 0, discountPercentage: 0, discountAmount: 0, total: 0 },
 };
 
 export const CartProvider = ({ children }) => {
-  const [cart, setCart] = useState(getInitialCart);
+  const { user } = useAuth();
+  const { showToast } = useToast();
+  const userId = user?.id;
 
+  const [cart, setCart] = useState(EMPTY_CART);
+  const [appliedPromo, setAppliedPromo] = useState(null);
+  const [loading, setLoading] = useState(Boolean(userId));
+  const [mutating, setMutating] = useState(false);
+
+  // Логин/логаут/смена пользователя: подгружаем его корзину или очищаем состояние
   useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(cart));
-  }, [cart]);
+    if (!userId) {
+      setCart(EMPTY_CART);
+      setAppliedPromo(null);
+      setLoading(false);
+      return;
+    }
 
-  const addToCart = (product, id, quantity = 1) => {
-    setCart((prev) => {
-      const existing = prev.find((item) => item.id === id);
+    let ignore = false;
+    setLoading(true);
 
-      if (existing) {
-        return prev.map((item) =>
-          item.id === id
-            ? { ...item, quantity: item.quantity + quantity }
-            : item
-        );
+    cartApi
+      .get()
+      .then((serverCart) => {
+        if (!ignore) setCart(serverCart);
+      })
+      .catch((err) => {
+        if (!ignore) showToast(err.message, "error");
+      })
+      .finally(() => {
+        if (!ignore) setLoading(false);
+      });
+
+    return () => {
+      ignore = true;
+    };
+  }, [userId, showToast]);
+
+  // Выполняет изменение корзины и, если промокод применён, пересчитывает скидку
+  const mutate = async (requestFn) => {
+    setMutating(true);
+    try {
+      let nextCart = await requestFn();
+
+      if (appliedPromo) {
+        try {
+          nextCart = await cartApi.applyPromo(appliedPromo.code);
+        } catch {
+          setAppliedPromo(null);
+          showToast("Promo code is no longer valid", "error");
+        }
       }
 
-      return [...prev, { ...product, id, quantity }];
-    });
+      setCart(nextCart);
+      return nextCart;
+    } finally {
+      setMutating(false);
+    }
   };
 
-  const decreaseFromCart = (id) => {
-    setCart((prev) =>
-      prev.map((item) => {
-        if (item.id !== id) return item;
+  const addToCart = (productId, quantity = 1) =>
+    mutate(() => cartApi.addItem(productId, quantity));
 
-        if (item.quantity <= 1) return item;
+  const updateQuantity = (itemId, quantity) =>
+    mutate(() => cartApi.updateItem(itemId, quantity));
 
-        return {
-          ...item,
-          quantity: item.quantity - 1,
-        };
-      })
-    );
+  const removeItem = (itemId) => mutate(() => cartApi.removeItem(itemId));
+
+  const applyPromo = async (code) => {
+    setMutating(true);
+    try {
+      const result = await cartApi.applyPromo(code);
+      setCart(result);
+      setAppliedPromo(result.appliedPromo);
+      return result.appliedPromo;
+    } finally {
+      setMutating(false);
+    }
   };
 
-  const removeFromCart = (id) => {
-    setCart((prev) => prev.filter((item) => item.id !== id));
+  const removePromo = async () => {
+    setMutating(true);
+    try {
+      setCart(await cartApi.get());
+      setAppliedPromo(null);
+    } finally {
+      setMutating(false);
+    }
   };
 
-  const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+  const totalCount = cart.items.reduce((sum, item) => sum + item.quantity, 0);
 
   return (
     <CartContext.Provider
       value={{
-        cart,
-        addToCart,
-        decreaseFromCart,
-        removeFromCart,
+        items: cart.items,
+        totals: cart.totals,
+        appliedPromo,
         totalCount,
+        loading,
+        mutating,
+        addToCart,
+        updateQuantity,
+        removeItem,
+        applyPromo,
+        removePromo,
       }}
     >
       {children}
