@@ -8,6 +8,9 @@
 @import "./empty_cart.css";
 @import "./cart.css";
 @import "./toaster.css";
+@import "./search_pagination.css";
+@import "./auth.css";
+@import "./admin.css";
 
 body {
   margin: 0;

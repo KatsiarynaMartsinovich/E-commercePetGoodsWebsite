@@ -8,11 +8,7 @@ const Breadcrumbs = ({ product }) => {
 
       <img src={nextIcon} alt=">" className="breadcrumb-icon" />
 
-      <Link to="/">{product.category}</Link>
-
-      <img src={nextIcon} alt=">" className="breadcrumb-icon" />
-
-      <span className="current">{product.name}</span>
+      <span className="current">{product.title}</span>
     </div>
   );
 };

@@ -35,7 +35,7 @@ const cartProductSchema = z.object({
   rating: z.number(),
   images: z.array(z.string()),
   stockQuantity: z.number(),
-  createdAt: z.date(),
+  createdAt: z.coerce.date(),
 });
 
 const cartItemResponseSchema = z.object({

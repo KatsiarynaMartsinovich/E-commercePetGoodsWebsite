@@ -3,12 +3,15 @@ import { useCart } from "../../context/CartContext";
 import search from '../../assets/search.svg';
 import basket from '../../assets/basket.svg';
 import open from '../../assets/open.svg';
+import UserMenu from "./UserMenu";
 
 const NavbarActions = ({ toggleMenu }) => {
   const { totalCount } = useCart();
 
   return (
     <div className="actions">
+      <UserMenu />
+      
       <button className="icon-btn">
         <img src={search} alt="search" />
       </button>

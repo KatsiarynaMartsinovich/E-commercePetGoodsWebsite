@@ -1,12 +1,8 @@
 import { useState, useRef, useEffect } from "react";
 import expand from "../../assets/expand.svg";
+import { SORT_OPTIONS } from "../../constants/catalog";
 
-const options = [
-  "Name (A-Z)",
-  "Name (Z-A)",
-  "Price (Low to High)",
-  "Price (High to Low)",
-];
+const options = SORT_OPTIONS.map((option) => option.label);
 
 export const SortDropdown = ({ selected, onChange }) => {
   const [isOpen, setIsOpen] = useState(false);

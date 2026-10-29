@@ -3,38 +3,55 @@ import { useCart } from "../../context/CartContext";
 import { useToast } from "../../context/ToastContext";
 
 const CartItem = ({ item }) => {
-  const { addToCart, decreaseFromCart, removeFromCart } = useCart();
+  const { updateQuantity, removeItem, mutating } = useCart();
   const { showToast } = useToast();
+  const { product } = item;
 
-  const handleRemove = () => {
-    removeFromCart(item.id);
-    showToast(`${item.name} removed from cart`);
+  const run = async (action, successMessage) => {
+    try {
+      await action();
+      if (successMessage) showToast(successMessage);
+    } catch (err) {
+      showToast(err.message, "error");
+    }
   };
+
+  const handleDecrease = () =>
+    run(() => updateQuantity(item.id, item.quantity - 1));
+
+  const handleIncrease = () =>
+    run(() => updateQuantity(item.id, item.quantity + 1));
+
+  const handleRemove = () =>
+    run(() => removeItem(item.id), `${product.title} removed from cart`);
 
   return (
     <div className="cart-card group">
       <div className="cart-card-inner">
-        <Link to={`/product/${item.id}`} className="cart-image">
-          <img src={item.image} alt={item.name} />
+        <Link to={`/product/${product.id}`} className="cart-image">
+          <img src={product.images?.[0]} alt={product.title} />
         </Link>
 
         <div className="cart-grid">
           <div className="cart-info">
-            <Link to={`/product/${item.id}`} className="cart-title">
-              {item.name}
+            <Link to={`/product/${product.id}`} className="cart-title">
+              {product.title}
             </Link>
-            <p className="cart-category">{item.category}</p>
+            <p className="cart-category">{product.stockQuantity} in stock</p>
           </div>
 
           <div className="cart-qty-wrapper">
             <div className="cart-qty">
-              <button onClick={() => decreaseFromCart(item.id)}>
+              <button
+                onClick={handleDecrease}
+                disabled={mutating || item.quantity <= 1}
+              >
                 –
               </button>
 
               <span>{item.quantity}</span>
 
-              <button onClick={() => addToCart(item, item.id)}>
+              <button onClick={handleIncrease} disabled={mutating}>
                 +
               </button>
             </div>
@@ -43,17 +60,16 @@ const CartItem = ({ item }) => {
           <div className="cart-price">
             <div className="cart-price-text">
               <p className="price-total">
-                ${(item.price * item.quantity).toFixed(2)}
+                ${(product.price * item.quantity).toFixed(2)}
               </p>
-              <p className="price-each">
-                ${item.price.toFixed(2)} each
-              </p>
+              <p className="price-each">${product.price.toFixed(2)} each</p>
             </div>
 
             <button
               className="remove-btn"
               aria-label="Remove item"
               onClick={handleRemove}
+              disabled={mutating}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

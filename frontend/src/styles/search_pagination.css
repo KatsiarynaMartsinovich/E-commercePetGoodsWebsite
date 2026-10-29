@@ -1,0 +1,114 @@
+.catalog-container {
+  scroll-margin-top: 80px;
+}
+
+.search-bar {
+  position: relative;
+  margin-bottom: 16px;
+}
+
+.search-bar-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.search-bar-input {
+  width: 100%;
+  box-sizing: border-box;
+  height: 48px;
+  padding: 0 16px 0 44px;
+  background: var(--color-white);
+  border: 1px solid var(--color-gray-200);
+  border-radius: 10px;
+  font-size: 15px;
+  font-family: inherit;
+  outline: none;
+}
+
+.search-bar-input:focus {
+  border-color: var(--color-orange-500);
+  box-shadow: 0 0 0 2px rgba(255, 105, 0, 0.15);
+}
+
+.catalog-status {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 40px 0;
+  font-size: 16px;
+  color: var(--color-gray-600);
+}
+
+.catalog-status-error {
+  color: #dc2626;
+}
+
+.product-grid.is-loading {
+  opacity: 0.5;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.filter-reset-btn {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid var(--color-gray-200);
+  background: var(--color-gray-50);
+  color: var(--color-gray-700);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.filter-reset-btn:hover {
+  border-color: var(--color-orange-500);
+  color: var(--color-orange-500);
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 32px;
+}
+
+.pagination-btn {
+  min-width: 40px;
+  height: 40px;
+  padding: 0 12px;
+  border-radius: 10px;
+  border: 1px solid var(--color-gray-200);
+  background: var(--color-white);
+  color: var(--color-gray-700);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.pagination-btn:hover:not(:disabled):not(.active) {
+  border-color: #ffb86a;
+}
+
+.pagination-btn.active {
+  background: var(--color-orange-500);
+  border-color: var(--color-orange-500);
+  color: var(--color-white);
+}
+
+.pagination-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.pagination-dots {
+  padding: 0 4px;
+  color: var(--color-gray-500);
+}

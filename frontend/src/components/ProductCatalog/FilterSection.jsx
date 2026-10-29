@@ -4,36 +4,17 @@ const FilterSection = ({
   options = [],
   filters,
   setFilters,
-  minValue = "0",
-  maxValue = "100",
   currencySymbol = "$",
 }) => {
-
-  const handleRatingToggle = (label) => {
-    setFilters((prev) => {
-      const exists = prev.ratings.includes(label);
-
-      return {
-        ...prev,
-        ratings: exists
-          ? prev.ratings.filter((r) => r !== label)
-          : [...prev.ratings, label],
-      };
-    });
-  };
-
-  const handleMinPriceChange = (e) => {
+  const handleRatingToggle = (value) => {
     setFilters((prev) => ({
       ...prev,
-      minPrice: Number(e.target.value),
+      minRating: prev.minRating === value ? null : value,
     }));
   };
 
-  const handleMaxPriceChange = (e) => {
-    setFilters((prev) => ({
-      ...prev,
-      maxPrice: Number(e.target.value),
-    }));
+  const handlePriceChange = (field) => (e) => {
+    setFilters((prev) => ({ ...prev, [field]: e.target.value }));
   };
 
   return (
@@ -43,22 +24,18 @@ const FilterSection = ({
       {mode === "rating" ? (
         <div>
           {options.map((option, index) => {
-            const checked = filters.ratings.includes(option.label);
+            const checked = filters.minRating === option.value;
 
             return (
               <div
-                key={index}
+                key={option.value}
                 className={`filter-option ${
                   index !== options.length - 1 ? "mb-3" : ""
                 }`}
-                onClick={() => handleRatingToggle(option.label)}
+                onClick={() => handleRatingToggle(option.value)}
                 style={{ cursor: "pointer" }}
               >
-                <div
-                  className={`filter-checkbox ${
-                    checked ? "checked" : ""
-                  }`}
-                >
+                <div className={`filter-checkbox ${checked ? "checked" : ""}`}>
                   {checked && (
                     <svg
                       width="12"
@@ -78,9 +55,7 @@ const FilterSection = ({
                   )}
                 </div>
 
-                <label className="filter-label">
-                  {option.label}
-                </label>
+                <label className="filter-label">{option.label}</label>
               </div>
             );
           })}
@@ -93,8 +68,10 @@ const FilterSection = ({
               <span className="currency">{currencySymbol}</span>
               <input
                 type="number"
+                min="0"
+                placeholder="0"
                 value={filters.minPrice}
-                onChange={handleMinPriceChange}
+                onChange={handlePriceChange("minPrice")}
                 className="price-input"
               />
             </div>
@@ -108,8 +85,10 @@ const FilterSection = ({
               <span className="currency">{currencySymbol}</span>
               <input
                 type="number"
+                min="0"
+                placeholder="Any"
                 value={filters.maxPrice}
-                onChange={handleMaxPriceChange}
+                onChange={handlePriceChange("maxPrice")}
                 className="price-input"
               />
             </div>

@@ -1,8 +1,8 @@
 import { useState, useRef, useEffect } from "react";
 import nextIcon from "../../assets/next_img.svg";
 
-const ProductGallery = ({ image }) => {
-  const realSlides = [image, image, image];
+const ProductGallery = ({ images }) => {
+  const realSlides = images;
 
   const slides = [
     realSlides[realSlides.length - 1],
