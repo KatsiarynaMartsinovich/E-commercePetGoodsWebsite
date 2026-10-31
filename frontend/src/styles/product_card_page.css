@@ -509,3 +509,35 @@
 .product-card-related:hover .product-card-image img {
   transform: scale(1.1);
 }
+
+.product-status {
+  flex: 1;
+  text-align: center;
+  padding: 96px 16px;
+}
+
+.product-status h2 {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--color-gray-900);
+  margin-bottom: 8px;
+}
+
+.product-status p {
+  color: var(--color-gray-600);
+  margin-bottom: 24px;
+}
+
+.product-status-link {
+  display: inline-block;
+  padding: 12px 24px;
+  background: var(--color-orange-500);
+  color: var(--color-white);
+  border-radius: 10px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.product-status-link:hover {
+  background: #f54a00;
+}

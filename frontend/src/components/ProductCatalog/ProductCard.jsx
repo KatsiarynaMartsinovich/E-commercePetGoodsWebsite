@@ -1,10 +1,9 @@
 import { Link } from "react-router-dom";
-import { useCart } from "../../context/CartContext";
-import { useToast } from "../../context/ToastContext";
 import star from '../../assets/star.svg';
 import half_star from '../../assets/half_star.svg';
 import empty_star from '../../assets/empty_star.svg';
 import cartIcon from '../../assets/white_basket.svg';
+import { useAddToCart } from "../../hooks/useAddToCart";
 
 const renderStars = (rating) => {
   const fullStars = Math.floor(rating);
@@ -29,26 +28,24 @@ const renderStars = (rating) => {
   return stars;
 };
 
-const ProductCard = ({ product, id }) => {
-  const { addToCart } = useCart();
-  const { showToast } = useToast();
+const ProductCard = ({ product }) => {
+  const addToCart = useAddToCart();
 
   const handleAdd = (e) => {
     e.preventDefault();
-
-    addToCart(product, id);
-
-    showToast(`${product.name} added to cart!`);
+    addToCart(product);
   };
 
+  const image = product.images?.[0];
+
   return (
-    <Link to={`/product/${id}`} className="product-card">
+    <Link to={`/product/${product.id}`} className="product-card">
       <div className="product-image-wrapper">
-        <img src={product.image} alt={product.name} />
+        <img src={image} alt={product.title} />
 
         <div className="product-overlay">
           <div className="overlay-content">
-            <h3 className="overlay-title">{product.name}</h3>
+            <h3 className="overlay-title">{product.title}</h3>
 
             <div className="rating">
               {renderStars(product.rating)}
@@ -65,13 +62,11 @@ const ProductCard = ({ product, id }) => {
           </div>
         </div>
 
-        <div className="price-badge">
-          ${product.price}
-        </div>
+        <div className="price-badge">${product.price}</div>
       </div>
 
       <div className="product-bottom">
-        <h3 className="card-title">{product.name}</h3>
+        <h3 className="card-title">{product.title}</h3>
 
         <div className="rating">
           {renderStars(product.rating)}

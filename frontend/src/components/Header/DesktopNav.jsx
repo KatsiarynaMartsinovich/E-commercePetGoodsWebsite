@@ -1,10 +1,12 @@
+import { Link } from "react-router-dom";
+
 const DesktopNav = () => {
   return (
     <nav className="nav">
-      <a href="/">Shop</a>
-      <a href="/">Categories</a>
-      <a href="/">Deals</a>
-      <a href="/">About</a>
+      <Link to="/">Shop</Link>
+      <Link to="/">Categories</Link>
+      <Link to="/">Deals</Link>
+      <Link to="/">About</Link>
     </nav>
   );
 };

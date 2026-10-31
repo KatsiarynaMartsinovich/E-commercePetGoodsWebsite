@@ -1,18 +1,11 @@
 import FilterSection from "./FilterSection";
 import closeIcon from "../../assets/close.svg";
+import { RATING_OPTIONS } from "../../constants/catalog";
 
-const FilterSidebar = ({
-  filters,
-  setFilters,
-  isOpen,
-  onClose,
-}) => {
+const FilterSidebar = ({ filters, setFilters, onReset, isOpen, onClose }) => {
   return (
-    <aside
-      className={`filter-sidebar ${isOpen ? "open" : ""}`}
-    >
+    <aside className={`filter-sidebar ${isOpen ? "open" : ""}`}>
       <div className="filter-box">
-        
         <div className="filter-header">
           <h2 className="filter-title">Filters</h2>
 
@@ -24,11 +17,7 @@ const FilterSidebar = ({
         <FilterSection
           title="Rating"
           mode="rating"
-          options={[
-            { label: "5+ Stars" },
-            { label: "4+ Stars" },
-            { label: "3+ Stars" },
-          ]}
+          options={RATING_OPTIONS}
           filters={filters}
           setFilters={setFilters}
         />
@@ -39,6 +28,10 @@ const FilterSidebar = ({
           filters={filters}
           setFilters={setFilters}
         />
+
+        <button className="filter-reset-btn" onClick={onReset}>
+          Reset filters
+        </button>
       </div>
     </aside>
   );

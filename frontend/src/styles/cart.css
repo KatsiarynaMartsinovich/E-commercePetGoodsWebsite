@@ -695,3 +695,15 @@
   padding-top: 12px;
   align-items: center;
 }
+
+.cart-qty button:disabled,
+.remove-btn:disabled,
+.promo-remove:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.promo-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
