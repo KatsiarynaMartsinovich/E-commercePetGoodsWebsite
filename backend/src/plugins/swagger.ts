@@ -5,6 +5,8 @@ import { jsonSchemaTransform } from 'fastify-type-provider-zod';
 import { FastifyInstance } from 'fastify';
 
 export default fp(async function (fastify: FastifyInstance) {
+  const publicUrl = process.env.PUBLIC_URL;
+
   await fastify.register(fastifySwagger, {
     openapi: {
       info: {
@@ -13,10 +15,9 @@ export default fp(async function (fastify: FastifyInstance) {
         version: '1.0.0',
       },
       servers: [
-        {
-          url: 'http://localhost:3000',
-          description: 'Локальный сервер разработки',
-        },
+        publicUrl
+          ? { url: publicUrl, description: 'Продакшн (Koyeb)' }
+          : { url: 'http://localhost:3000', description: 'Локальный сервер разработки' },
       ],
       components: {
         securitySchemes: {
