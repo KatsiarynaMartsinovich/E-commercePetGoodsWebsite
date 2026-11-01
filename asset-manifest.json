@@ -1,17 +1,15 @@
 {
   "files": {
-    "main.css": "/E-commercePetGoodsWebsite/static/css/main.2ecb9a8f.css",
-    "main.js": "/E-commercePetGoodsWebsite/static/js/main.6658c849.js",
+    "main.css": "/E-commercePetGoodsWebsite/static/css/main.44102864.css",
+    "main.js": "/E-commercePetGoodsWebsite/static/js/main.b08de46a.js",
     "static/js/453.825386d9.chunk.js": "/E-commercePetGoodsWebsite/static/js/453.825386d9.chunk.js",
     "static/media/filter.svg": "/E-commercePetGoodsWebsite/static/media/filter.8ca5f1d77dbc4aeb72ccbaa761b615ea.svg",
-    "static/media/specifications.svg": "/E-commercePetGoodsWebsite/static/media/specifications.236b8f86ea5046b6005c8339c8d8e43a.svg",
     "static/media/logo.svg": "/E-commercePetGoodsWebsite/static/media/logo.c8f851f4b3c9c053d1f3fcd44694b73b.svg",
     "static/media/basket.svg": "/E-commercePetGoodsWebsite/static/media/basket.3df8f7ea2cfed818ba7ff68bc5cfc9e8.svg",
     "static/media/instagram.svg": "/E-commercePetGoodsWebsite/static/media/instagram.db4315ec09bead0171e487603d36631f.svg",
     "static/media/package.svg": "/E-commercePetGoodsWebsite/static/media/package.3692168e159b73029805d01813881bfe.svg",
     "static/media/white_basket.svg": "/E-commercePetGoodsWebsite/static/media/white_basket.ebf2f4e5cd48c99b0874995f41895544.svg",
     "static/media/half_star.svg": "/E-commercePetGoodsWebsite/static/media/half_star.21a28d554dc93d66869d20f8b4abb4c1.svg",
-    "static/media/info.svg": "/E-commercePetGoodsWebsite/static/media/info.cc58b5dc412da91b9010c103a6e78e5b.svg",
     "static/media/open.svg": "/E-commercePetGoodsWebsite/static/media/open.d365465f75b989ec6439936437bdfb79.svg",
     "static/media/star.svg": "/E-commercePetGoodsWebsite/static/media/star.59d1a06dc13c346f21a880854654e92c.svg",
     "static/media/send.svg": "/E-commercePetGoodsWebsite/static/media/send.530d5b715cbb557aeeabee57e94d328d.svg",
@@ -25,12 +23,12 @@
     "static/media/close.svg": "/E-commercePetGoodsWebsite/static/media/close.0c6231373a2fc0d6d7ead045cb38d138.svg",
     "index.html": "/E-commercePetGoodsWebsite/index.html",
     "static/media/next_img.svg": "/E-commercePetGoodsWebsite/static/media/next_img.81783347ed608b4fcb0e93db714b97c7.svg",
-    "main.2ecb9a8f.css.map": "/E-commercePetGoodsWebsite/static/css/main.2ecb9a8f.css.map",
-    "main.6658c849.js.map": "/E-commercePetGoodsWebsite/static/js/main.6658c849.js.map",
+    "main.44102864.css.map": "/E-commercePetGoodsWebsite/static/css/main.44102864.css.map",
+    "main.b08de46a.js.map": "/E-commercePetGoodsWebsite/static/js/main.b08de46a.js.map",
     "453.825386d9.chunk.js.map": "/E-commercePetGoodsWebsite/static/js/453.825386d9.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.2ecb9a8f.css",
-    "static/js/main.6658c849.js"
+    "static/css/main.44102864.css",
+    "static/js/main.b08de46a.js"
   ]
 }
