@@ -6,7 +6,9 @@ const FooterLinksColumn = ({ title, links }) => {
       <ul className="footer-links">
         {links.map((link, index) => (
           <li key={index}>
-            <a href={link.href}>{link.text}</a>
+            <a href="#" onClick={(e) => e.preventDefault()}>
+              {link.text}
+            </a>
           </li>
         ))}
       </ul>
