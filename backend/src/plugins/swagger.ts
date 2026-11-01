@@ -16,7 +16,7 @@ export default fp(async function (fastify: FastifyInstance) {
       },
       servers: [
         publicUrl
-          ? { url: publicUrl, description: 'Продакшн (Koyeb)' }
+          ? { url: publicUrl, description: 'Продакшн (Render)' }
           : { url: 'http://localhost:3000', description: 'Локальный сервер разработки' },
       ],
       components: {
